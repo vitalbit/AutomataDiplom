@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class TestFile
+    public class TestFile : IORMEntity
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public byte[] Content { get; set; }
-        public ICollection<Test> Tests { get; set; }
+        public virtual ICollection<Test> Tests { get; set; }
         public TestFile()
         {
             this.Tests = new HashSet<Test>();

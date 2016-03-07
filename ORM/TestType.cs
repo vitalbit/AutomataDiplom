@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class TestType
+    public class TestType : IORMEntity
     {
         public int Id { get; set; }
         public string ModuleName { get; set; }

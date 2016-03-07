@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class Test
+    public class Test : IORMEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int TestTypeId { get; set; }
-        public ICollection<TestFile> TestFiles { get; set; }
-        public ICollection<Answer> Answers { get; set; }
-        public TestType TestType { get; set; }
+        public virtual ICollection<TestFile> TestFiles { get; set; }
+        public virtual ICollection<Answer> Answers { get; set; }
+        public virtual TestType TestType { get; set; }
 
         public Test()
         {

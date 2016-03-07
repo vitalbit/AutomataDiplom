@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class Course
+    public class Course : IORMEntity
     {
         public int Id { get; set; }
         public int? Number { get; set; }

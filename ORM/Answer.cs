@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class Answer
+    public class Answer : IORMEntity
     {
         public int Id { get; set; }
         public byte[] Content { get; set; }
+        public int Mark { get; set; }
         public DateTime TestEndTime { get; set; }
         public int TestId { get; set; }
         public int UserId { get; set; }

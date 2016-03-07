@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class User
+    public class User : IORMEntity
     {
         public int Id { get; set; }
         public string Email { get; set; }
