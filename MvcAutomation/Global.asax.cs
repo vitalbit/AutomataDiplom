@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcAutomation.Infrastructura;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace MvcAutomation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            System.Web.Mvc.DependencyResolver.SetResolver(new NinjectDependencyResolver());
         }
     }
 }

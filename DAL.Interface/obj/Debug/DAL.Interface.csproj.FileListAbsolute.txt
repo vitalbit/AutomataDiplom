@@ -1,0 +1,10 @@
+D:\DIPLOM\AutomataDiplom\DAL.Interface\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
+D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\DAL.Interface.dll.config
+D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\DAL.Interface.dll
+D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\DAL.Interface.pdb
+D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\EntityFramework.dll
+D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\EntityFramework.SqlServer.dll
+D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\EntityFramework.xml
+D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\EntityFramework.SqlServer.xml
+D:\DIPLOM\AutomataDiplom\DAL.Interface\obj\Debug\DAL.Interface.dll
+D:\DIPLOM\AutomataDiplom\DAL.Interface\obj\Debug\DAL.Interface.pdb

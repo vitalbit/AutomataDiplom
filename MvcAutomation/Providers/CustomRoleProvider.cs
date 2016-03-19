@@ -1,5 +1,6 @@
 ﻿using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using MvcAutomation.Infrastructura;
 using System;
 using System.Collections.Generic;
 using System.Linq;

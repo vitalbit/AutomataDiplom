@@ -32,6 +32,15 @@ namespace BLL.Services
             this.specialityRepository = uow.SpecialityRepository;
         }
 
+        public UserEntity GetUserByEmail(string email)
+        {
+            DalUser user = userRepository.GetByPredicate(ent => ent.Email == email);
+            if (user == null)
+                return null;
+            else
+                return user.ToBllUser();
+        }
+
         public IEnumerable<UserEntity> GetAllUserEntities()
         {
             return userRepository.GetAll().Select(answ => answ.ToBllUser());

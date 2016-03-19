@@ -40,3 +40,21 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.layout { 
+    overflow: hidden; 
+}
+.col1 { 
+    background: #808080;
+    float: left;
+    width: 200px;
+}
+.col2 { 
+    background: #ECD5DE;
+    margin: 10px, 200px, 0, 200px;
+}
+.col3 { 
+    background: #b94a48;
+    width: 200px; 
+    float: right; 
+}

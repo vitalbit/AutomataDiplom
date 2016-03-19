@@ -1,0 +1,11 @@
+D:\DIPLOM\AutomataDiplom\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\BLL.dll
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\BLL.pdb
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\BLL.Interface.dll
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\DAL.Interface.dll
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\EntityFramework.dll
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\BLL.Interface.pdb
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\DAL.Interface.pdb
+D:\DIPLOM\AutomataDiplom\BLL\bin\Debug\EntityFramework.xml
+D:\DIPLOM\AutomataDiplom\BLL\obj\Debug\BLL.dll
+D:\DIPLOM\AutomataDiplom\BLL\obj\Debug\BLL.pdb

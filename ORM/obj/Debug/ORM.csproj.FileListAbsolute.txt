@@ -1,0 +1,10 @@
+D:\DIPLOM\AutomataDiplom\ORM\bin\Debug\ORM.dll.config
+D:\DIPLOM\AutomataDiplom\ORM\bin\Debug\ORM.dll
+D:\DIPLOM\AutomataDiplom\ORM\bin\Debug\ORM.pdb
+D:\DIPLOM\AutomataDiplom\ORM\bin\Debug\EntityFramework.dll
+D:\DIPLOM\AutomataDiplom\ORM\bin\Debug\EntityFramework.SqlServer.dll
+D:\DIPLOM\AutomataDiplom\ORM\bin\Debug\EntityFramework.xml
+D:\DIPLOM\AutomataDiplom\ORM\bin\Debug\EntityFramework.SqlServer.xml
+D:\DIPLOM\AutomataDiplom\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+D:\DIPLOM\AutomataDiplom\ORM\obj\Debug\ORM.dll
+D:\DIPLOM\AutomataDiplom\ORM\obj\Debug\ORM.pdb

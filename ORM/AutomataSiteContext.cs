@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    class AutomataSiteContext : DbContext
+    public class AutomataSiteContext : DbContext
     {
-        public AutomataSiteContext() : base("AutomataSite") { }
+        public AutomataSiteContext() : base("AutomataSite") 
+        {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<AutomataSiteContext>());
+        }
 
         public DbSet<Course> Courses { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
@@ -21,5 +24,10 @@ namespace ORM
         public DbSet<TestFile> TestFiles { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Answer> Answers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

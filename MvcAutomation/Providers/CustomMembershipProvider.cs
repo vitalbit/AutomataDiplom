@@ -1,5 +1,6 @@
 ﻿using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using MvcAutomation.Infrastructura;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace MvcAutomation.Providers
             throw new NotImplementedException();
         }
 
-        public override bool ChangePassword(UserEntity user, string oldPassword, string newPassword)
+        public bool ChangePassword(UserEntity user, string oldPassword, string newPassword)
         {
             if (Crypto.VerifyHashedPassword(user.Password, oldPassword))
             {
@@ -52,6 +53,22 @@ namespace MvcAutomation.Providers
             throw new NotImplementedException();
         }
 
+        public MembershipUser CreateUser(string email, string password, int? roleId)
+        {
+            UserEntity user = userService.GetUserByEmail(email);
+
+            if (user != null)
+            {
+                user.RoleId = userService.GetAllRoleEntities().First(ent => ent.Name == "Student").Id;
+                user.Password = Crypto.HashPassword(password);
+                userService.UpdateUser(user);
+                MembershipUser memberUser = GetUser(email, false);
+                FormsAuthentication.SetAuthCookie(email, true);
+                return memberUser;
+            }
+            return null;
+        }
+
         public MembershipUser CreateUser(string firstname, string lastname, string password, string email, int? courseId, int? groupId, int? specialityId, int? facultyId, int? roleId)
         {
             UserEntity user = new UserEntity() { FirstName = firstname, LastName = lastname, Email = email, CourseId = courseId, GroupId = groupId, SpecialityId = specialityId, FacultyId = facultyId };
@@ -61,7 +78,7 @@ namespace MvcAutomation.Providers
             {
                 user.Password = Crypto.HashPassword(password);
                 user.RoleId = roleId;
-                userService.CreateUser(user);
+                userService.UpdateUser(user);
                 memberUser = GetUser(email, false);
                 return memberUser;
             }

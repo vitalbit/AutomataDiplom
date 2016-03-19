@@ -9,6 +9,7 @@ namespace BLL.Interface.Services
 {
     public interface IUserService : IDisposable
     {
+        UserEntity GetUserByEmail(string email);
         IEnumerable<UserEntity> GetAllUserEntities();
         void CreateUser(UserEntity user);
         void UpdateUser(UserEntity user);
