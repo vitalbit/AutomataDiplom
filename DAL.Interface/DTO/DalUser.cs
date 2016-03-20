@@ -18,5 +18,10 @@ namespace DAL.Interface.DTO
         public int? SpecialityId { get; set; }
         public int? FacultyId { get; set; }
         public int? RoleId { get; set; }
+        public DalCourse Course { get; set; }
+        public DalFaculty Faculty { get; set; }
+        public DalGroup Group { get; set; }
+        public DalSpeciality Speciality { get; set; }
+        public DalRole Role { get; set; }
     }
 }

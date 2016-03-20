@@ -18,5 +18,10 @@ namespace BLL.Interface.Entities
         public int? SpecialityId { get; set; }
         public int? FacultyId { get; set; }
         public int? RoleId { get; set; }
+        public CourseEntity Course { get; set; }
+        public GroupEntity Group { get; set; }
+        public SpecialityEntity Speciality { get; set; }
+        public FacultyEntity Faculty { get; set; }
+        public RoleEntity Role { get; set; }
     }
 }

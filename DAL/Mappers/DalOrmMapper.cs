@@ -77,7 +77,12 @@ namespace DAL.Mappers
                 GroupId = user.GroupId,
                 SpecialityId = user.SpecialityId,
                 FacultyId = user.FacultyId,
-                RoleId = user.RoleId
+                RoleId = user.RoleId,
+                Course = (DalCourse)user.Course.ToDal(),
+                Faculty = (DalFaculty)user.Faculty.ToDal(),
+                Group = (DalGroup)user.Group.ToDal(),
+                Role = (DalRole)user.Role.ToDal(),
+                Speciality = (DalSpeciality)user.Speciality.ToDal()
             };
         }
 

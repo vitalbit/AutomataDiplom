@@ -27,17 +27,22 @@ namespace DAL.Concrete
             return context.Set<TOrm>().ToList().Select(answ => (TEntity)answ.ToDal());
         }
 
+        public IEnumerable<TEntity> GetBetween(int start, int count)
+        {
+            return context.Set<TOrm>().Skip(start).Take(count).ToList().Select(ent => (TEntity)ent.ToDal());
+        }
+
         public TEntity GetById(int key)
         {
             TOrm entity = context.Set<TOrm>().FirstOrDefault(ent => ent.Id == key);
             return (TEntity)entity.ToDal();
         }
 
-        public TEntity GetByPredicate(System.Linq.Expressions.Expression<Func<TEntity, bool>> f)
+        public IEnumerable<TEntity> GetByPredicate(System.Linq.Expressions.Expression<Func<TEntity, bool>> f)
         {
             Func<TEntity, bool> func = f.Compile();
             IEnumerable<TEntity> answers = GetAll();
-            return answers.FirstOrDefault(answ => func(answ));
+            return answers.Where(answ => func(answ));
         }
 
         public void Create(TEntity e)

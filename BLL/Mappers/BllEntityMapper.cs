@@ -12,208 +12,293 @@ namespace BLL.Mappers
     {
         public static DalUser ToDalUser(this UserEntity user)
         {
-            return new DalUser()
+            if (user != null)
             {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Password = user.Password,
-                Email = user.Email,
-                CourseId = user.CourseId,
-                GroupId = user.GroupId,
-                SpecialityId = user.SpecialityId,
-                FacultyId = user.FacultyId,
-                RoleId = user.RoleId
-            };
+                return new DalUser()
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Password = user.Password,
+                    Email = user.Email,
+                    CourseId = user.CourseId,
+                    GroupId = user.GroupId,
+                    SpecialityId = user.SpecialityId,
+                    FacultyId = user.FacultyId,
+                    RoleId = user.RoleId
+                };
+            }
+            return null;
         }
 
         public static UserEntity ToBllUser(this DalUser user)
         {
-            return new UserEntity()
+            if (user != null)
             {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Password = user.Password,
-                Email = user.Email,
-                CourseId = user.CourseId,
-                GroupId = user.GroupId,
-                SpecialityId = user.SpecialityId,
-                FacultyId = user.FacultyId,
-                RoleId = user.RoleId
-            };
+                return new UserEntity()
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Password = user.Password,
+                    Email = user.Email,
+                    CourseId = user.CourseId,
+                    GroupId = user.GroupId,
+                    SpecialityId = user.SpecialityId,
+                    FacultyId = user.FacultyId,
+                    RoleId = user.RoleId,
+                    Course = user.Course.ToBllCourse(),
+                    Faculty = user.Faculty.ToBllFaculty(),
+                    Group = user.Group.ToBllGroup(),
+                    Role = user.Role.ToBllRole(),
+                    Speciality = user.Speciality.ToBllSpeciality()
+                };
+            }
+            return null;
         }
 
         public static DalAnswer ToDalAnswer(this AnswerEntity answer)
         {
-            return new DalAnswer()
+            if (answer != null)
             {
-                Id = answer.Id,
-                TestId = answer.TestId,
-                UserId = answer.UserId,
-                Mark = answer.Mark,
-                Content = answer.Content,
-                TestEndTime = answer.TestEndTime
-            };
+                return new DalAnswer()
+                {
+                    Id = answer.Id,
+                    TestId = answer.TestId,
+                    UserId = answer.UserId,
+                    Mark = answer.Mark,
+                    Content = answer.Content,
+                    TestEndTime = answer.TestEndTime
+                };
+            }
+            return null;
         }
 
         public static AnswerEntity ToBllAnswer(this DalAnswer answer)
         {
-            return new AnswerEntity()
+            if (answer != null)
             {
-                Id = answer.Id,
-                TestId = answer.TestId,
-                UserId = answer.UserId,
-                Mark = answer.Mark,
-                Content = answer.Content,
-                TestEndTime = answer.TestEndTime
-            };
+                return new AnswerEntity()
+                {
+                    Id = answer.Id,
+                    TestId = answer.TestId,
+                    UserId = answer.UserId,
+                    Mark = answer.Mark,
+                    Content = answer.Content,
+                    TestEndTime = answer.TestEndTime
+                };
+            }
+            return null;
         }
 
         public static DalCourse ToDalCourse(this CourseEntity course)
         {
-            return new DalCourse()
+            if (course != null)
             {
-                Id = course.Id,
-                Number = course.Number
-            };
+                return new DalCourse()
+                {
+                    Id = course.Id,
+                    Number = course.Number
+                };
+            }
+            return null;
         }
 
         public static CourseEntity ToBllCourse(this DalCourse course)
         {
-            return new CourseEntity()
+            if (course != null)
             {
-                Id = course.Id,
-                Number = course.Number
-            };
+                return new CourseEntity()
+                {
+                    Id = course.Id,
+                    Number = course.Number
+                };
+            }
+            return null;
         }
 
         public static DalFaculty ToDalFaculty(this FacultyEntity faculty)
         {
-            return new DalFaculty()
+            if (faculty != null)
             {
-                Id = faculty.Id,
-                Name = faculty.Name
-            };
+                return new DalFaculty()
+                {
+                    Id = faculty.Id,
+                    Name = faculty.Name
+                };
+            }
+            return null;
         }
 
         public static FacultyEntity ToBllFaculty(this DalFaculty faculty)
         {
-            return new FacultyEntity()
+            if (faculty != null)
             {
-                Id = faculty.Id,
-                Name = faculty.Name
-            };
+                return new FacultyEntity()
+                {
+                    Id = faculty.Id,
+                    Name = faculty.Name
+                };
+            }
+            return null;
         }
 
         public static DalGroup ToDalGroup(this GroupEntity group)
         {
-            return new DalGroup()
+            if (group != null)
             {
-                Id = group.Id,
-                Name = group.Name
-            };
+                return new DalGroup()
+                {
+                    Id = group.Id,
+                    Name = group.Name
+                };
+            }
+            return null;
         }
 
         public static GroupEntity ToBllGroup(this DalGroup group)
         {
-            return new GroupEntity()
+            if (group != null)
             {
-                Id = group.Id,
-                Name = group.Name
-            };
+                return new GroupEntity()
+                {
+                    Id = group.Id,
+                    Name = group.Name
+                };
+            }
+            return null;
         }
 
         public static DalRole ToDalRole(this RoleEntity role)
         {
-            return new DalRole()
+            if (role != null)
             {
-                Id = role.Id,
-                Name = role.Name
-            };
+                return new DalRole()
+                {
+                    Id = role.Id,
+                    Name = role.Name
+                };
+            }
+            return null;
         }
 
         public static RoleEntity ToBllRole(this DalRole role)
         {
-            return new RoleEntity()
+            if (role != null)
             {
-                Id = role.Id,
-                Name = role.Name
-            };
+                return new RoleEntity()
+                {
+                    Id = role.Id,
+                    Name = role.Name
+                };
+            }
+            return null;
         }
 
         public static DalSpeciality ToDalSpeciality(this SpecialityEntity speciality)
         {
-            return new DalSpeciality()
+            if (speciality != null)
             {
-                Id = speciality.Id,
-                Name = speciality.Name
-            };
+                return new DalSpeciality()
+                {
+                    Id = speciality.Id,
+                    Name = speciality.Name
+                };
+            }
+            return null;
         }
 
         public static SpecialityEntity ToBllSpeciality(this DalSpeciality speciality)
         {
-            return new SpecialityEntity()
+            if (speciality != null)
             {
-                Id = speciality.Id,
-                Name = speciality.Name
-            };
+                return new SpecialityEntity()
+                {
+                    Id = speciality.Id,
+                    Name = speciality.Name
+                };
+            }
+            return null;
         }
 
         public static DalTest ToDalTest(this TestEntity test)
         {
-            return new DalTest()
+            if (test != null)
             {
-                Id = test.Id,
-                Name = test.Name,
-                TestTypeId = test.TestTypeId
-            };
+                return new DalTest()
+                {
+                    Id = test.Id,
+                    Name = test.Name,
+                    TestTypeId = test.TestTypeId
+                };
+            }
+            return null;
         }
 
         public static TestEntity ToBllTest(this DalTest test)
         {
-            return new TestEntity()
+            if (test != null)
             {
-                Id = test.Id,
-                Name = test.Name,
-                TestTypeId = test.TestTypeId
-            };
+                return new TestEntity()
+                {
+                    Id = test.Id,
+                    Name = test.Name,
+                    TestTypeId = test.TestTypeId
+                };
+            }
+            return null;
         }
 
         public static DalTestFile ToDalTestFile(this TestFileEntity testFile)
         {
-            return new DalTestFile()
+            if (testFile != null)
             {
-                Id = testFile.Id,
-                Content = testFile.Content
-            };
+                return new DalTestFile()
+                {
+                    Id = testFile.Id,
+                    Content = testFile.Content
+                };
+            }
+            return null;
         }
 
         public static TestFileEntity ToBllTestFile(this DalTestFile testFile)
         {
-            return new TestFileEntity()
+            if (testFile != null)
             {
-                Content = testFile.Content,
-                Id = testFile.Id
-            };
+                return new TestFileEntity()
+                {
+                    Content = testFile.Content,
+                    Id = testFile.Id
+                };
+            }
+            return null;
         }
 
         public static DalTestType ToDalTestType(this TestTypeEntity testType)
         {
-            return new DalTestType()
+            if (testType != null)
             {
-                Id = testType.Id,
-                ModuleName = testType.ModuleName
-            };
+                return new DalTestType()
+                {
+                    Id = testType.Id,
+                    ModuleName = testType.ModuleName
+                };
+            }
+            return null;
         }
 
         public static TestTypeEntity ToBllTestType(this DalTestType testType)
         {
-            return new TestTypeEntity()
+            if (testType != null)
             {
-                Id = testType.Id,
-                ModuleName = testType.ModuleName
-            };
+                return new TestTypeEntity()
+                {
+                    Id = testType.Id,
+                    ModuleName = testType.ModuleName
+                };
+            }
+            return null;
         }
     }
 }

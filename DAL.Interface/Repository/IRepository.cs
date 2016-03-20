@@ -11,8 +11,9 @@ namespace DAL.Interface.Repository
     public interface IRepository<TEntity> where TEntity : IDalEntity
     {
         IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetBetween(int start, int count);
         TEntity GetById(int key);
-        TEntity GetByPredicate(Expression<Func<TEntity, bool>> f);
+        IEnumerable<TEntity> GetByPredicate(Expression<Func<TEntity, bool>> f);
         void Create(TEntity e);
         void Delete(TEntity e);
         void Update(TEntity e);

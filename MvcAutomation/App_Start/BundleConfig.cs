@@ -29,6 +29,8 @@ namespace MvcAutomation
 
             bundles.Add(new ScriptBundle("~/bundles/loginScripts").Include(
                 "~/Scripts/loginScripts/buttonsAction.js"));
+            bundles.Add(new ScriptBundle("~/bundles/homeScripts").Include(
+                "~/Scripts/homeScripts/menuAction.js"));
         }
     }
 }

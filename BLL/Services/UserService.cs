@@ -34,7 +34,7 @@ namespace BLL.Services
 
         public UserEntity GetUserByEmail(string email)
         {
-            DalUser user = userRepository.GetByPredicate(ent => ent.Email == email);
+            DalUser user = userRepository.GetByPredicate(ent => ent.Email == email).First();
             if (user == null)
                 return null;
             else
@@ -44,6 +44,16 @@ namespace BLL.Services
         public IEnumerable<UserEntity> GetAllUserEntities()
         {
             return userRepository.GetAll().Select(answ => answ.ToBllUser());
+        }
+
+        public IEnumerable<UserEntity> GetAllUserEntities(int start)
+        {
+            return userRepository.GetBetween(start, 10).Select(ent => ent.ToBllUser());
+        }
+
+        public IEnumerable<UserEntity> GetAllUserEntities(string searchString)
+        {
+            return userRepository.GetByPredicate(ent => ent.Email.Contains(searchString)).Select(ent => ent.ToBllUser());
         }
 
         public void CreateUser(UserEntity user)
@@ -94,6 +104,11 @@ namespace BLL.Services
         public IEnumerable<RoleEntity> GetAllRoleEntities()
         {
             return roleRepository.GetAll().Select(answ => answ.ToBllRole());
+        }
+
+        public RoleEntity GetRoleByName(string role)
+        {
+            return roleRepository.GetAll().FirstOrDefault(ent => ent.Name == role).ToBllRole();
         }
 
         public void CreateRole(RoleEntity role)

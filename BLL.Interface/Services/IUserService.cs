@@ -11,6 +11,8 @@ namespace BLL.Interface.Services
     {
         UserEntity GetUserByEmail(string email);
         IEnumerable<UserEntity> GetAllUserEntities();
+        IEnumerable<UserEntity> GetAllUserEntities(int start);
+        IEnumerable<UserEntity> GetAllUserEntities(string searchString);
         void CreateUser(UserEntity user);
         void UpdateUser(UserEntity user);
         IEnumerable<CourseEntity> GetAllCourseEntities();
@@ -20,6 +22,7 @@ namespace BLL.Interface.Services
         IEnumerable<GroupEntity> GetAllGroupEntities();
         void CreateGroup(GroupEntity group);
         IEnumerable<RoleEntity> GetAllRoleEntities();
+        RoleEntity GetRoleByName(string role);
         void CreateRole(RoleEntity role);
         IEnumerable<SpecialityEntity> GetAllSpecialityEntities();
         void CreateSpeciality(SpecialityEntity speciality);

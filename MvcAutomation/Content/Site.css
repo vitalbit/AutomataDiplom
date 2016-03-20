@@ -58,3 +58,12 @@ input[type="checkbox"].input-validation-error {
     width: 200px; 
     float: right; 
 }
+.menuArea {
+    padding-left: 20px;
+    padding-top: 10px;
+    float: left;
+}
+.displayArea {
+    width: 60%;
+    float: right;
+}

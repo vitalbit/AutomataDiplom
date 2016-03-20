@@ -19,7 +19,7 @@ namespace MvcAutomation.Controllers
         {
             this.userService = userService;
         }
-
+        #region Authorization
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -87,6 +87,7 @@ namespace MvcAutomation.Controllers
                 ModelState.AddModelError("", "Пароли не совпадают!");
             return View("Index");
         }
+        #endregion
 
         [Authorize]
         [HttpGet]
@@ -102,6 +103,7 @@ namespace MvcAutomation.Controllers
             return View();
         }
 
+        #region ChangePassword
         [Authorize]
         [HttpGet]
         public ActionResult ChangePassword()
@@ -126,6 +128,75 @@ namespace MvcAutomation.Controllers
                 ModelState.AddModelError("", "Пароли не совпадают!");
             }
             return View();
+        }
+        #endregion
+
+        private class UserRole
+        {
+            public string Email { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Speciaity { get; set; }
+            public string Group { get; set; }
+            public int? Course { get; set; }
+            public string Role { get; set; }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult TenUsersRoles(string start)
+        {
+            IEnumerable<UserEntity> users = userService.GetAllUserEntities();
+            List<RoleEntity> roles = userService.GetAllRoleEntities().ToList();
+            List<UserRole> userRole = new List<UserRole>();
+            foreach(UserEntity user in users)
+            {
+                userRole.Add(new UserRole()
+                {
+                    Email = user.Email,
+                    Course = user.Course != null ? user.Course.Number : null,
+                    FirstName = user.FirstName,
+                    Group = user.Group != null ? user.Group.Name : null,
+                    LastName = user.LastName,
+                    Role = user.Role.Name,
+                    Speciaity = user.Speciality != null ? user.Speciality.Name : null
+                });
+            }
+            return Json(new { users = userRole, roles = roles });
+        }
+
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        public ActionResult ChangeRole(string email, string newRole)
+        {
+            UserEntity user = userService.GetUserByEmail(email);
+            RoleEntity role = userService.GetRoleByName(newRole);
+            user.RoleId = role.Id;
+            userService.UpdateUser(user);
+            return Json(new { message = "Update Success!" });
+        }
+
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        public ActionResult SearchUser(string search)
+        {
+            IEnumerable<UserEntity> users = userService.GetAllUserEntities(search);
+            IEnumerable<RoleEntity> roles = userService.GetAllRoleEntities();
+            List<UserRole> userRole = new List<UserRole>();
+            foreach (UserEntity user in users)
+            {
+                userRole.Add(new UserRole()
+                {
+                    Email = user.Email,
+                    Course = user.Course != null ? user.Course.Number : null,
+                    FirstName = user.FirstName,
+                    Group = user.Group != null ? user.Group.Name : null,
+                    LastName = user.LastName,
+                    Role = user.Role.Name,
+                    Speciaity = user.Speciality != null ? user.Speciality.Name : null
+                });
+            }
+            return Json(new { users = userRole, roles = roles });
         }
 
         protected override void Dispose(bool disposing)
