@@ -165,6 +165,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\StructureOrganizeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +189,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\homeScripts\addMaterialSection.js" />
+    <Content Include="Scripts\homeScripts\addTestSection.js" />
     <Content Include="Scripts\homeScripts\materialAction.js" />
     <Content Include="Scripts\homeScripts\roleAction.js" />
     <Content Include="Scripts\homeScripts\studentAction.js" />
@@ -225,6 +228,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Material\" />
     <Folder Include="Views\StructureOrganize\" />
+    <Folder Include="Views\TestType\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

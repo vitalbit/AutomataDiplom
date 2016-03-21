@@ -28,9 +28,9 @@ namespace DAL.Mappers
                 return (entity as Speciality).ToDalSpeciality();
             else if (entity is Test)
                 return (entity as Test).ToDalTest();
-            else if (entity is DalTestFile)
+            else if (entity is TestFile)
                 return (entity as TestFile).ToDalTestFile();
-            else if (entity is DalTestType)
+            else if (entity is TestType)
                 return (entity as TestType).ToDalTestType();
             else if (entity is User)
                 return (entity as User).ToDalUser();
@@ -251,6 +251,7 @@ namespace DAL.Mappers
             {
                 Id = testFile.Id,
                 Content = testFile.Content,
+                FileName = testFile.FileName,
                 Tests = testFile.Tests != null ? testFile.Tests.Select(ent => ent.ToDalTest()) : new List<DalTest>()
             };
         }
@@ -261,6 +262,7 @@ namespace DAL.Mappers
             {
                 Id = testFile.Id,
                 Content = testFile.Content,
+                FileName = testFile.FileName,
                 Tests = testFile.Tests != null ? testFile.Tests.Select(ent => ent.ToOrmTest()).ToList() : new List<Test>()
             };
         }

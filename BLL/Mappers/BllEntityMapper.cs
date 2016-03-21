@@ -229,7 +229,8 @@ namespace BLL.Mappers
                 {
                     Id = test.Id,
                     Name = test.Name,
-                    TestTypeId = test.TestTypeId
+                    TestTypeId = test.TestTypeId,
+                    TestFiles = test.TestFiles != null ? test.TestFiles.Select(ent => ent.ToDalTestFile()) : new List<DalTestFile>()
                 };
             }
             return null;
@@ -243,7 +244,8 @@ namespace BLL.Mappers
                 {
                     Id = test.Id,
                     Name = test.Name,
-                    TestTypeId = test.TestTypeId
+                    TestTypeId = test.TestTypeId,
+                    TestFiles = test.TestFiles != null ? test.TestFiles.Select(ent => ent.ToBllTestFile()) : new List<TestFileEntity>()
                 };
             }
             return null;
@@ -256,7 +258,8 @@ namespace BLL.Mappers
                 return new DalTestFile()
                 {
                     Id = testFile.Id,
-                    Content = testFile.Content
+                    Content = testFile.Content,
+                    FileName = testFile.FileName
                 };
             }
             return null;
@@ -269,7 +272,8 @@ namespace BLL.Mappers
                 return new TestFileEntity()
                 {
                     Content = testFile.Content,
-                    Id = testFile.Id
+                    Id = testFile.Id,
+                    FileName = testFile.FileName
                 };
             }
             return null;

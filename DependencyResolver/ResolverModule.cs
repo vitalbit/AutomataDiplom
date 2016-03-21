@@ -23,6 +23,7 @@ namespace DependencyResolver
 
             Bind<IUserService>().To<UserService>();
             Bind<IMaterialService>().To<MaterialService>();
+            Bind<ITestService>().To<TestService>();
         }
     }
 }

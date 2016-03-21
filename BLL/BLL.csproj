@@ -42,6 +42,7 @@
     <Compile Include="Mappers\BllEntityMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MaterialService.cs" />
+    <Compile Include="Services\TestService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
