@@ -54,6 +54,7 @@
     <Compile Include="Faculty.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="IORMEntity.cs" />
+    <Compile Include="Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Speciality.cs" />

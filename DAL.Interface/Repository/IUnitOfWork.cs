@@ -20,6 +20,7 @@ namespace DAL.Interface.Repository
         IRepository<DalTestFile> TestFileRepository { get; }
         IRepository<DalTestType> TestTypeRepository { get; }
         IRepository<DalUser> UserRepository { get; }
+        IRepository<DalMaterial> MaterialRepository { get; }
         DbContext Context { get; }
         void Commit();
     }

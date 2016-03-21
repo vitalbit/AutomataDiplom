@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface.DTO
 {
-    public class DalCourse : IDalEntity
+    public class DalMaterial : IDalEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public byte[] Content { get; set; }
+        public string FileName { get; set; }
+        public string Description { get; set; }
     }
 }

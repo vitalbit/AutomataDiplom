@@ -98,7 +98,7 @@ namespace BLL.Mappers
                 return new DalCourse()
                 {
                     Id = course.Id,
-                    Number = course.Number
+                    Name = course.Name
                 };
             }
             return null;
@@ -111,7 +111,7 @@ namespace BLL.Mappers
                 return new CourseEntity()
                 {
                     Id = course.Id,
-                    Number = course.Number
+                    Name = course.Name
                 };
             }
             return null;
@@ -296,6 +296,36 @@ namespace BLL.Mappers
                 {
                     Id = testType.Id,
                     ModuleName = testType.ModuleName
+                };
+            }
+            return null;
+        }
+
+        public static DalMaterial ToDalMaterial(this MaterialEntity material)
+        {
+            if (material != null)
+            {
+                return new DalMaterial()
+                {
+                    Content = material.Content,
+                    Description = material.Description,
+                    FileName = material.FileName,
+                    Id = material.Id
+                };
+            }
+            return null;
+        }
+
+        public static MaterialEntity ToBllMaterial(this DalMaterial material)
+        {
+            if (material != null)
+            {
+                return new MaterialEntity()
+                {
+                    Content = material.Content,
+                    Description = material.Description,
+                    FileName = material.FileName,
+                    Id = material.Id
                 };
             }
             return null;

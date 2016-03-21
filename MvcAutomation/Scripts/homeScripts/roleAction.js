@@ -2,6 +2,7 @@
     $("#homePageMenu .menuArea .roleControlePage").click(function (event) {
         event.preventDefault();
         var start = 0;
+        var usersLength = 0;
         var updateUserRoleArea = function (msg) {
             var area = $('#homePageMenu .displayArea .userRolesArea');
             area.html('');
@@ -43,14 +44,28 @@
             })
             .done(function (msg) {
                 updateUserRoleArea(msg);
+                usersLength = msg.users.length;
             });
         };
 
-        $("#homePageMenu .displayArea").html('<input type="text" placeholder="search"/><input class="searchButton" type="submit" value="Search"/><div class="userRolesArea"></div><input class="nextButton" type="submit" value="Next"/>');
+        $("#homePageMenu .displayArea").html('<input type="text" placeholder="search"/><input class="searchButton" type="submit" value="Search"/><div class="userRolesArea"></div><input class="prevButton" type="submit" value="Prev" disabled/><input class="nextButton" type="submit" value="Next"/>');
 
         $("#homePageMenu .displayArea .nextButton").click(function () {
+            $("#homePageMenu .displayArea .prevButton").removeAttr('disabled');
             NextResults();
+            if (usersLength < 10) {
+                $("#homePageMenu .displayArea .nextButton").attr('disabled', 'disable');
+            }
             start += 10;
+        });
+
+        $("#homePageMenu .displayArea .prevButton").click(function () {
+            $("#homePageMenu .displayArea .nextButton").removeAttr('disabled');
+            start -= 10;
+            if (start == 0) {
+                $("#homePageMenu .displayArea .prevButton").attr('disabled', 'disabled');
+            }
+            NextResults();
         });
 
         var searchButton = $('#homePageMenu .displayArea .searchButton');
@@ -66,5 +81,8 @@
         });
 
         NextResults();
+        if (usersLength < 10) {
+            $("#homePageMenu .displayArea .nextButton").attr('disabled', 'disable');
+        }
     });
 })();

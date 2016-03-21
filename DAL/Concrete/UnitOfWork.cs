@@ -23,6 +23,7 @@ namespace DAL.Concrete
         private GenericRepository<DalTestFile, TestFile> testFileRepository;
         private GenericRepository<DalTestType, TestType> testTypeRepository;
         private GenericRepository<DalUser, User> userRepository;
+        private GenericRepository<DalMaterial, Material> materialRepository;
 
         public UnitOfWork(DbContext context)
         {
@@ -140,6 +141,16 @@ namespace DAL.Concrete
             }
         }
 
+        public GenericRepository<DalMaterial, Material> MaterialRepository
+        {
+            get
+            {
+                if (this.materialRepository == null)
+                    this.materialRepository = new GenericRepository<DalMaterial, Material>(context);
+                return materialRepository;
+            }
+        }
+
         public void Dispose()
         {
             Dispose(true);
@@ -204,6 +215,11 @@ namespace DAL.Concrete
         IRepository<DalUser> IUnitOfWork.UserRepository
         {
             get { return UserRepository; }
+        }
+
+        IRepository<DalMaterial> IUnitOfWork.MaterialRepository
+        {
+            get { return MaterialRepository; }
         }
     }
 }

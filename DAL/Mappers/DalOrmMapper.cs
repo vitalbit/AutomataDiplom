@@ -34,6 +34,8 @@ namespace DAL.Mappers
                 return (entity as TestType).ToDalTestType();
             else if (entity is User)
                 return (entity as User).ToDalUser();
+            else if (entity is Material)
+                return (entity as Material).ToDalMaterial();
             else
                 return null;
         }
@@ -60,6 +62,8 @@ namespace DAL.Mappers
                 return (entity as DalTestType).ToOrmTestType();
             else if (entity is DalUser)
                 return (entity as DalUser).ToOrmUser();
+            else if (entity is DalMaterial)
+                return (entity as DalMaterial).ToOrmMaterial();
             else
                 return null;
         }
@@ -134,7 +138,7 @@ namespace DAL.Mappers
             return new DalCourse()
             {
                 Id = course.Id,
-                Number = course.Number
+                Name = course.Name
             };
         }
 
@@ -143,7 +147,7 @@ namespace DAL.Mappers
             return new Course()
             {
                 Id = course.Id,
-                Number = course.Number
+                Name = course.Name
             };
         }
 
@@ -276,6 +280,28 @@ namespace DAL.Mappers
             {
                 Id = testType.Id,
                 ModuleName = testType.ModuleName
+            };
+        }
+
+        public static DalMaterial ToDalMaterial(this Material material)
+        {
+            return new DalMaterial()
+            {
+                Content = material.Content,
+                Description = material.Description,
+                FileName = material.FileName,
+                Id = material.Id
+            };
+        }
+
+        public static Material ToOrmMaterial(this DalMaterial material)
+        {
+            return new Material()
+            {
+                Content = material.Content,
+                Description = material.Description,
+                FileName = material.FileName,
+                Id = material.Id
             };
         }
 

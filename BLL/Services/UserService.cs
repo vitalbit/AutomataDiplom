@@ -34,7 +34,7 @@ namespace BLL.Services
 
         public UserEntity GetUserByEmail(string email)
         {
-            DalUser user = userRepository.GetByPredicate(ent => ent.Email == email).First();
+            DalUser user = userRepository.GetByPredicate(ent => ent.Email == email).FirstOrDefault();
             if (user == null)
                 return null;
             else

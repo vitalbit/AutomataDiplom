@@ -22,6 +22,7 @@ namespace DependencyResolver
             Bind<IUnitOfWork>().To<UnitOfWork>();
 
             Bind<IUserService>().To<UserService>();
+            Bind<IMaterialService>().To<MaterialService>();
         }
     }
 }

@@ -87,6 +87,14 @@ namespace MvcAutomation.Controllers
                 ModelState.AddModelError("", "Пароли не совпадают!");
             return View("Index");
         }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
         #endregion
 
         [Authorize]
@@ -138,7 +146,7 @@ namespace MvcAutomation.Controllers
             public string LastName { get; set; }
             public string Speciaity { get; set; }
             public string Group { get; set; }
-            public int? Course { get; set; }
+            public string Course { get; set; }
             public string Role { get; set; }
         }
 
@@ -154,7 +162,7 @@ namespace MvcAutomation.Controllers
                 userRole.Add(new UserRole()
                 {
                     Email = user.Email,
-                    Course = user.Course != null ? user.Course.Number : null,
+                    Course = user.Course != null ? user.Course.Name : null,
                     FirstName = user.FirstName,
                     Group = user.Group != null ? user.Group.Name : null,
                     LastName = user.LastName,
@@ -188,7 +196,7 @@ namespace MvcAutomation.Controllers
                 userRole.Add(new UserRole()
                 {
                     Email = user.Email,
-                    Course = user.Course != null ? user.Course.Number : null,
+                    Course = user.Course != null ? user.Course.Name : null,
                     FirstName = user.FirstName,
                     Group = user.Group != null ? user.Group.Name : null,
                     LastName = user.LastName,

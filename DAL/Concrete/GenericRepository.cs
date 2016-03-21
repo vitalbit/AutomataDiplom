@@ -29,7 +29,7 @@ namespace DAL.Concrete
 
         public IEnumerable<TEntity> GetBetween(int start, int count)
         {
-            return context.Set<TOrm>().Skip(start).Take(count).ToList().Select(ent => (TEntity)ent.ToDal());
+            return context.Set<TOrm>().OrderBy(ent => ent.Id).Skip(start).Take(count).ToList().Select(ent => (TEntity)ent.ToDal());
         }
 
         public TEntity GetById(int key)
