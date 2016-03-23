@@ -11,9 +11,12 @@ namespace BLL.Interface.Services
     {
         IEnumerable<TestTypeEntity> GetAllTestTypes();
         IEnumerable<TestEntity> GetAllTests();
+        IEnumerable<TestEntity> GetAllTests(int start);
+        IEnumerable<TestEntity> GetAllTests(string search);
         IEnumerable<TestFileEntity> GetAllTestFiles();
         TestEntity GetTestById(int id);
         TestFileEntity GetFileById(int id);
+        TestTypeEntity GetTypeById(int id);
         void CreateTestType(TestTypeEntity testType);
         void CreateTest(TestEntity test);
         void CreateTestFile(TestFileEntity testFile);

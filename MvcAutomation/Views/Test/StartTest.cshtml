@@ -1,0 +1,11 @@
+﻿@model MvcAutomation.Models.StartTestModel
+
+@{
+    ViewBag.Title = "StartTest";
+}
+
+<input type="hidden" value="@Model.TestId"/>
+<label>@Model.TestName</label>
+<div id="targetArea"></div>
+
+<script src="@Model.TypeName"></script>

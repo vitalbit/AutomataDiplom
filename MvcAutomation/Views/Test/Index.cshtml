@@ -1,0 +1,12 @@
+﻿@model MvcAutomation.Models.TestModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@using (Html.BeginForm("StartTest", "Test", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.TestId)
+    @Html.LabelFor(model => model.TestName)
+    <br />
+    <input type="submit" value="Start"/>
+}

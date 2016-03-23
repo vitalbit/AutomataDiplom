@@ -36,6 +36,16 @@ namespace BLL.Services
             return testRepository.GetAll().Select(ent => ent.ToBllTest());
         }
 
+        public IEnumerable<TestEntity> GetAllTests(int start)
+        {
+            return testRepository.GetBetween(start, 10).Select(ent => ent.ToBllTest());
+        }
+
+        public IEnumerable<TestEntity> GetAllTests(string search)
+        {
+            return testRepository.GetByPredicate(ent => ent.Name.Contains(search)).Select(ent => ent.ToBllTest());
+        }
+
         public IEnumerable<TestFileEntity> GetAllTestFiles()
         {
             return testFileRepository.GetAll().Select(ent => ent.ToBllTestFile());
@@ -49,6 +59,11 @@ namespace BLL.Services
         public TestFileEntity GetFileById(int id)
         {
             return testFileRepository.GetById(id).ToBllTestFile();
+        }
+
+        public TestTypeEntity GetTypeById(int id)
+        {
+            return testTypeRepository.GetById(id).ToBllTestType();
         }
 
         public void CreateTestType(TestTypeEntity testType)
