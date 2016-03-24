@@ -4,8 +4,10 @@
     ViewBag.Title = "StartTest";
 }
 
-<input type="hidden" value="@Model.TestId"/>
-<label>@Model.TestName</label>
-<div id="targetArea"></div>
+<div id="testArea">
+    <input type="hidden" value="@Model.TestId" />
+    <label>@Model.TestName</label>
+    <div id="targetArea"></div>
+</div>
 
 <script src="@Model.TypeName"></script>

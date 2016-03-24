@@ -166,6 +166,7 @@
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\StructureOrganizeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestPassingController.cs" />
     <Compile Include="Controllers\TestTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +208,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\testScripts\PolishImageTest.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -231,9 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\testScripts\" />
     <Folder Include="Views\Material\" />
     <Folder Include="Views\StructureOrganize\" />
+    <Folder Include="Views\TestPassing\" />
     <Folder Include="Views\TestType\" />
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +253,10 @@
     <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
       <Project>{0dc446fd-b223-4ad9-a88c-59f965e968e7}</Project>
       <Name>DependencyResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputPostfixRegex\InputPostfixRegex.csproj">
+      <Project>{e3d8362b-aef5-4f62-9603-8f75a822e1c3}</Project>
+      <Name>InputPostfixRegex</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
