@@ -28,7 +28,7 @@
             });
         };
 
-        $("#homePageMenu .displayArea").html('<form method="post" id="fileinfo">Тип теста<br/><select></select><input type="text" placeholder="Test type"/><input type="submit" value="Add"/><br/><select></select><input id="fileInput" type="file"/><input type="submit" value="Upload"/><br/><input type="text" placeholder="TestName"/><input type="submit" value="Add"/></form>');
+        $("#homePageMenu .displayArea").html('Тип теста<br/><select></select><input type="text" placeholder="Test type"/><input type="submit" value="Add"/><br/><form method="post" id="fileinfo"><select></select><input id="fileInput" type="file"/><input type="submit" value="Upload test file"/></form><br/><input type="text" placeholder="TestName"/><input type="submit" value="Add"/>');
         $('#homePageMenu .displayArea input[type="submit"]').first().click(function (event) {
             event.preventDefault();
             $.ajax({

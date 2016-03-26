@@ -6,7 +6,7 @@
     })
     .done(function (res) {
         var msg = JSON.parse(res);
-        $('#targetArea').append('Lambda: ' + msg.Lambda);
+        $('#targetArea').append('Regex: ' + msg.Regex);
         $('#targetArea').append('<br/>Polish Expression:<br/><input type="text" placeholder="Your polish"/><br/><input type="submit" value="OK"/><br/><img/>');
         $('#targetArea input[type="submit"]').click(function (event) {
             event.preventDefault();

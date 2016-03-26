@@ -10,6 +10,7 @@ namespace BLL.Interface.Services
     public interface IUserService : IDisposable
     {
         UserEntity GetUserByEmail(string email);
+        UserEntity GetUserById(int id);
         IEnumerable<UserEntity> GetAllUserEntities();
         IEnumerable<UserEntity> GetAllUserEntities(int start);
         IEnumerable<UserEntity> GetAllUserEntities(string searchString);

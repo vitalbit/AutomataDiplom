@@ -1,0 +1,5 @@
+D:\DIPLOM\AutomataDiplom\GradeSystems\bin\Debug\GradeSystems.dll
+D:\DIPLOM\AutomataDiplom\GradeSystems\bin\Debug\GradeSystems.pdb
+D:\DIPLOM\AutomataDiplom\GradeSystems\obj\Debug\GradeSystems.dll
+D:\DIPLOM\AutomataDiplom\GradeSystems\obj\Debug\GradeSystems.pdb
+D:\DIPLOM\AutomataDiplom\GradeSystems\obj\Debug\GradeSystems.csprojResolveAssemblyReference.cache

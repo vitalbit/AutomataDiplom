@@ -17,6 +17,8 @@ namespace BLL.Services
         private readonly IRepository<DalTest> testRepository;
         private readonly IRepository<DalTestFile> testFileRepository;
         private readonly IRepository<DalTestType> testTypeRepository;
+        private readonly IRepository<DalAnswer> answerRepository;
+        private readonly IRepository<DalUser> userRepository;
 
         public TestService(IUnitOfWork uow)
         {
@@ -24,6 +26,8 @@ namespace BLL.Services
             this.testRepository = uow.TestRepository;
             this.testFileRepository = uow.TestFileRepository;
             this.testTypeRepository = uow.TestTypeRepository;
+            this.answerRepository = uow.AnswerRepository;
+            this.userRepository = uow.UserRepository;
         }
 
         public IEnumerable<TestTypeEntity> GetAllTestTypes()
@@ -49,6 +53,22 @@ namespace BLL.Services
         public IEnumerable<TestFileEntity> GetAllTestFiles()
         {
             return testFileRepository.GetAll().Select(ent => ent.ToBllTestFile());
+        }
+
+        public IEnumerable<AnswerEntity> GetAllAnswers(int start)
+        {
+            return answerRepository.GetBetween(start, 10).Select(ent => ent.ToBllAnswer());
+        }
+
+        public IEnumerable<AnswerEntity> GetAllAnswers(string search)
+        {
+            IEnumerable<UserEntity> users = userRepository.GetByPredicate(ent => (ent.LastName + ' ' + ent.FirstName).Contains(search) || ent.Faculty.Name.Contains(search) || ent.Speciality.Name.Contains(search)).Select(ent => ent.ToBllUser());
+            return answerRepository.GetByPredicate(ent => users.Any(ent1 => ent1.Id == ent.UserId)).Select(ent => ent.ToBllAnswer());
+        }
+
+        public AnswerEntity GetAnswerById(int id)
+        {
+            return answerRepository.GetById(id).ToBllAnswer();
         }
 
         public TestEntity GetTestById(int id)
@@ -81,6 +101,12 @@ namespace BLL.Services
         public void CreateTestFile(TestFileEntity testFile)
         {
             testFileRepository.Create(testFile.ToDalTestFile());
+            uow.Commit();
+        }
+
+        public void CreateAnswer(AnswerEntity answer)
+        {
+            answerRepository.Create(answer.ToDalAnswer());
             uow.Commit();
         }
 

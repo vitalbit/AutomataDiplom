@@ -14,11 +14,15 @@ namespace BLL.Interface.Services
         IEnumerable<TestEntity> GetAllTests(int start);
         IEnumerable<TestEntity> GetAllTests(string search);
         IEnumerable<TestFileEntity> GetAllTestFiles();
+        IEnumerable<AnswerEntity> GetAllAnswers(int start);
+        IEnumerable<AnswerEntity> GetAllAnswers(string search);
+        AnswerEntity GetAnswerById(int id);
         TestEntity GetTestById(int id);
         TestFileEntity GetFileById(int id);
         TestTypeEntity GetTypeById(int id);
         void CreateTestType(TestTypeEntity testType);
         void CreateTest(TestEntity test);
         void CreateTestFile(TestFileEntity testFile);
+        void CreateAnswer(AnswerEntity answer);
     }
 }

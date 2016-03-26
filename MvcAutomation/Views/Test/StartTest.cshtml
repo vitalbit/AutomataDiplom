@@ -1,8 +1,14 @@
 ﻿@model MvcAutomation.Models.StartTestModel
 
 @{
+    string cssFile = "/Content/Styles/" + @Model.TypeName + ".css";
+    string jsFile = "/Scripts/testScripts/" + @Model.TypeName + ".js";
     ViewBag.Title = "StartTest";
 }
+
+<meta http-equiv="Content-Type" content="text/html; charset=ansi" />
+<link rel="stylesheet" type="text/css" href="@cssFile" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
 
 <div id="testArea">
     <input type="hidden" value="@Model.TestId" />
@@ -10,4 +16,4 @@
     <div id="targetArea"></div>
 </div>
 
-<script src="@Model.TypeName"></script>
+<script src="@jsFile"></script>

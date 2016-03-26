@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace MvcAutomation.Controllers
 {
@@ -29,6 +30,12 @@ namespace MvcAutomation.Controllers
             return View();
         }
 
+        private class DescriptionReg
+        {
+            public string Regex { get; set; }
+            public string Description { get; set; }
+        }
+
         [HttpPost]
         [Authorize]
         public ActionResult CurrentFile(int testId)
@@ -36,8 +43,8 @@ namespace MvcAutomation.Controllers
             TestEntity test = testService.GetTestById(testId);
             List<TestFileEntity> testFiles = new List<TestFileEntity>(test.TestFiles);
             StreamReader sr = new StreamReader(new MemoryStream(testFiles[0].Content));
-
-            return Json(sr.ReadToEnd());
+            DescriptionReg descr = new JavaScriptSerializer().Deserialize<DescriptionReg>(sr.ReadToEnd());
+            return Json(descr);
         }
 
         [HttpGet]

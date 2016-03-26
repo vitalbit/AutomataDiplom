@@ -35,7 +35,8 @@ namespace MvcAutomation
                 "~/Scripts/homeScripts/addMaterialSection.js",
                 "~/Scripts/homeScripts/materialAction.js",
                 "~/Scripts/homeScripts/addTestSection.js",
-                "~/Scripts/homeScripts/testAction.js"));
+                "~/Scripts/homeScripts/testAction.js",
+                "~/Scripts/homeScripts/lastResultsSection.js"));
         }
     }
 }

@@ -41,6 +41,11 @@ namespace BLL.Services
                 return user.ToBllUser();
         }
 
+        public UserEntity GetUserById(int id)
+        {
+            return userRepository.GetById(id).ToBllUser();
+        }
+
         public IEnumerable<UserEntity> GetAllUserEntities()
         {
             return userRepository.GetAll().Select(answ => answ.ToBllUser());

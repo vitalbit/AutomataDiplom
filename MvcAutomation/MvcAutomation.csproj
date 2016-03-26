@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructura\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\AnswerResultsModel.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\StartTestModel.cs" />
@@ -184,6 +185,14 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\add_col.png" />
+    <Content Include="Content\Images\add_row.png" />
+    <Content Include="Content\Images\button_add.png" />
+    <Content Include="Content\Images\delete.png" />
+    <Content Include="Content\Images\delete_col.png" />
+    <Content Include="Content\Images\delete_row.png" />
+    <Content Include="Content\Images\table2_selection_row.png" />
+    <Content Include="Content\Styles\AutomataTable.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -193,6 +202,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\homeScripts\addMaterialSection.js" />
     <Content Include="Scripts\homeScripts\addTestSection.js" />
+    <Content Include="Scripts\homeScripts\lastResultsSection.js" />
     <Content Include="Scripts\homeScripts\materialAction.js" />
     <Content Include="Scripts\homeScripts\roleAction.js" />
     <Content Include="Scripts\homeScripts\studentAction.js" />
@@ -208,6 +218,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\testScripts\AutomataTable.js" />
     <Content Include="Scripts\testScripts\PolishImageTest.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -253,6 +264,10 @@
     <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
       <Project>{0dc446fd-b223-4ad9-a88c-59f965e968e7}</Project>
       <Name>DependencyResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GradeSystems\GradeSystems.csproj">
+      <Project>{92f99a17-4b2f-4364-9279-509471458956}</Project>
+      <Name>GradeSystems</Name>
     </ProjectReference>
     <ProjectReference Include="..\InputPostfixRegex\InputPostfixRegex.csproj">
       <Project>{e3d8362b-aef5-4f62-9603-8f75a822e1c3}</Project>
