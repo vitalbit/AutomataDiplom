@@ -89,7 +89,7 @@
         point1[0]++;
         point1[1] = Math.floor(k * point1[0] + b);
         drawCircle(point1, 'cyan', radius);
-        if (point1[0] != point2[0] && point1[1] != point2[1]) {
+        if (point1[0] != point2[0] || point1[1] != point2[1]) {
             setTimeout(Diagram.prototype.goingToCircle, 5);
         }
         else {

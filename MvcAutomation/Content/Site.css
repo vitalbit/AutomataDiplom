@@ -1,14 +1,14 @@
 ﻿html {
-    height: 100%;
 }
 
 body {
-    height: 100%;
-    background: #4b4b4b;
-    background: linear-gradient(to top, #bebbbb, #4b4b4b);
-    background-repeat: no-repeat;
     padding-top: 50px;
     padding-bottom: 20px;
+    margin: 0;
+    background-attachment: fixed;
+    background: #4b4b4b;
+    background: linear-gradient(to top, #bebbbb, #4b4b4b) fixed;
+    background-repeat: no-repeat;
 }
 
 input[type="submit"].spinner,
@@ -107,7 +107,7 @@ input[disabled]:hover {
 }
 
 .search {
-    background: #FFF url(/Content/Images/input-text-search.png) no-repeat 4px 4px;
+    background: #FFF url('/Content/Images/input-text-search.png') no-repeat 4px 4px;
     padding-left: 25px;
 }
 
@@ -154,4 +154,50 @@ input[disabled]:hover {
 #canvas {
     text-align: center;
     background: #f5f5f5;
+}
+
+.home-icon {
+    background-size: 100px 100px;
+    display: block;
+    height: 100px;
+    width: 100px;
+    border: 1px double #DDD;
+    border-radius: 5px;
+}
+
+    .home-icon:hover {
+        background-size: 110px 110px;
+        height: 110px;
+        width: 110px;
+    }
+
+.resultsPage,
+.lastResultsPage {
+    background-image: url('/Content/Images/a-plus-paper.jpg');
+}
+
+.testsPage,
+.addTestPage {
+    background-image: url('/Content/Images/checklist.jpg');
+}
+
+.materialsPage,
+.addMaterialPage {
+    background-image: url('/Content/Images/folders.jpg');
+}
+
+.changePasswordPage {
+    background-image: url('/Content/Images/security.jpg');
+}
+
+.addStudentsPage {
+    background-image: url('/Content/Images/people.png');
+}
+
+.roleControlePage {
+    background-image: url('/Content/Images/roles.png');
+}
+
+.reversePage {
+    background-image: url('/Content/Images/reverse.png');
 }

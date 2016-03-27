@@ -4,16 +4,17 @@
 
 <div id="homePageMenu">
     <div class="menuArea">
-        <a href="" class="resultsPage">Last results</a>
-        <br />
-        <a href="" class="testsPage">Tests</a>
-        <br />
-        <a href="" class="materialsPage">Materials</a>
-        <br />
-        <a href="/Home/ChangePassword" class="changePasswordPage">Change password</a>
+        <a href="" class="resultsPage home-icon" title="Последние результаты"></a>
+        <a href="" class="testsPage home-icon" title="Тесты"></a>
+        <a href="" class="materialsPage home-icon" title="Материал"></a>
+        <a href="/Home/ChangePassword" class="changePasswordPage home-icon" title="Изменить пароль"></a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="/Home/HomePageAdmin" title="Страница администратора" class="reversePage home-icon"></a>
+        }
     </div>
     <div class="displayArea">
-        Welcome!
+        Добро пожаловать!
     </div>
 </div>
 
