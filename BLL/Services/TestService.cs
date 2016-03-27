@@ -47,7 +47,7 @@ namespace BLL.Services
 
         public IEnumerable<TestEntity> GetAllTests(string search)
         {
-            return testRepository.GetByPredicate(ent => ent.Name.Contains(search)).Select(ent => ent.ToBllTest());
+            return testRepository.GetByPredicate(ent => ent.Name.ToLower().Contains(search.ToLower())).Select(ent => ent.ToBllTest());
         }
 
         public IEnumerable<TestFileEntity> GetAllTestFiles()
@@ -62,8 +62,23 @@ namespace BLL.Services
 
         public IEnumerable<AnswerEntity> GetAllAnswers(string search)
         {
-            IEnumerable<UserEntity> users = userRepository.GetByPredicate(ent => (ent.LastName + ' ' + ent.FirstName).Contains(search) || ent.Faculty.Name.Contains(search) || ent.Speciality.Name.Contains(search)).Select(ent => ent.ToBllUser());
+            IEnumerable<UserEntity> users = userRepository.GetByPredicate(ent => (!String.IsNullOrEmpty(ent.LastName) && !String.IsNullOrEmpty(ent.FirstName) && (ent.LastName.ToLower() + ' ' + ent.FirstName.ToLower()).Contains(search.ToLower()))
+                || (ent.Faculty != null && ent.Faculty.Name.ToLower().Contains(search.ToLower()))
+                || (ent.Speciality != null && ent.Speciality.Name.ToLower().Contains(search.ToLower()))).Select(ent => ent.ToBllUser());
             return answerRepository.GetByPredicate(ent => users.Any(ent1 => ent1.Id == ent.UserId)).Select(ent => ent.ToBllAnswer());
+        }
+
+        public IEnumerable<AnswerEntity> GetUserAnswers(string email, int start)
+        {
+            DalUser user = userRepository.GetByPredicate(ent => ent.Email == email).FirstOrDefault();
+            return answerRepository.GetByPredicate(ent => ent.UserId == user.Id).OrderBy(ent => ent.Id).Skip(start).Take(10).Select(ent => ent.ToBllAnswer());
+        }
+
+        public IEnumerable<AnswerEntity> GetUserAnswers(string email, string search)
+        {
+            DalUser user = userRepository.GetByPredicate(ent => ent.Email == email).FirstOrDefault();
+            IEnumerable<DalTest> tests = testRepository.GetByPredicate(ent => ent.Name.ToLower().Contains(search.ToLower()));
+            return answerRepository.GetByPredicate(ent => ent.UserId == user.Id && tests.Any(ent1 => ent1.Id == ent.TestId)).Select(ent => ent.ToBllAnswer());
         }
 
         public AnswerEntity GetAnswerById(int id)

@@ -56,9 +56,12 @@ namespace BLL.Services
             return userRepository.GetBetween(start, 10).Select(ent => ent.ToBllUser());
         }
 
-        public IEnumerable<UserEntity> GetAllUserEntities(string searchString)
+        public IEnumerable<UserEntity> GetAllUserEntities(string search)
         {
-            return userRepository.GetByPredicate(ent => ent.Email.Contains(searchString)).Select(ent => ent.ToBllUser());
+            return userRepository.GetByPredicate(ent => ent.Email.ToLower().Contains(search.ToLower()) 
+                || (!String.IsNullOrEmpty(ent.LastName) && !String.IsNullOrEmpty(ent.FirstName) && (ent.LastName.ToLower() + ' ' + ent.FirstName.ToLower()).Contains(search.ToLower()))
+                || (ent.Faculty != null && ent.Faculty.Name.ToLower().Contains(search.ToLower()))
+                || (ent.Speciality != null && ent.Speciality.Name.ToLower().Contains(search.ToLower()))).Select(ent => ent.ToBllUser());
         }
 
         public void CreateUser(UserEntity user)

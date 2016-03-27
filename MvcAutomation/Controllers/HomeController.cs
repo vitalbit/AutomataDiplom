@@ -55,8 +55,10 @@ namespace MvcAutomation.Controllers
                     if (Membership.ValidateUser(loginModel.Email, loginModel.Password))
                     {
                         FormsAuthentication.SetAuthCookie(loginModel.Email, true);
-                        return View("HomePage");
+                        return RedirectToAction("HomePage");
                     }
+                    else
+                        ModelState.AddModelError("", "Неверный пароль!");
                 }
                 catch
                 {

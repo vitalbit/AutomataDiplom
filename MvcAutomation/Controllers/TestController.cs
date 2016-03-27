@@ -152,6 +152,7 @@ namespace MvcAutomation.Controllers
             foreach (AnswerEntity answer in answers)
             {
                 UserEntity user = userService.GetUserById(answer.UserId);
+                TestEntity test = testService.GetTestById(answer.TestId);
                 answerResults.Add(new AnswerResultsModel()
                 {
                     Course = user.Course !=null ? user.Course.Name : "",
@@ -161,10 +162,27 @@ namespace MvcAutomation.Controllers
                     LastName = user.LastName,
                     Mark = answer.Mark,
                     Speciality = user.Speciality != null ? user.Speciality.Name : "",
-                    AnswerId = answer.Id
+                    AnswerId = answer.Id,
+                    TestName = test.Name
                 });
             }
             return answerResults;
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult GetUserAnswers(int start)
+        {
+            IEnumerable<AnswerEntity> answers = testService.GetUserAnswers(User.Identity.Name, start);
+            return Json(new { results = this.ToModelResult(answers) });
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult SearchUserAnswer(string search)
+        {
+            IEnumerable<AnswerEntity> answers = testService.GetUserAnswers(User.Identity.Name, search);
+            return Json(new { results = this.ToModelResult(answers) });
         }
 
         protected override void Dispose(bool disposing)

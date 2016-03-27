@@ -4,8 +4,7 @@
         url: "/TestPassing/CurrentFile",
         data: { testId: $('#testArea input[type="hidden"]').val() }
     })
-    .done(function (res) {
-        var msg = JSON.parse(res);
+    .done(function (msg) {
         $('#targetArea').append('Regex: ' + msg.Regex);
         $('#targetArea').append('<br/>Polish Expression:<br/><input type="text" placeholder="Your polish"/><br/><input type="submit" value="OK"/><br/><img/>');
         $('#targetArea input[type="submit"]').click(function (event) {

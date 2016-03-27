@@ -16,6 +16,8 @@ namespace BLL.Interface.Services
         IEnumerable<TestFileEntity> GetAllTestFiles();
         IEnumerable<AnswerEntity> GetAllAnswers(int start);
         IEnumerable<AnswerEntity> GetAllAnswers(string search);
+        IEnumerable<AnswerEntity> GetUserAnswers(string email, int start);
+        IEnumerable<AnswerEntity> GetUserAnswers(string email, string search);
         AnswerEntity GetAnswerById(int id);
         TestEntity GetTestById(int id);
         TestFileEntity GetFileById(int id);

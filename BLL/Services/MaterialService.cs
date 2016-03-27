@@ -34,7 +34,8 @@ namespace BLL.Services
 
         public IEnumerable<MaterialEntity> GetAllMaterial(string search)
         {
-            return materialRepository.GetByPredicate(ent => ent.FileName.Contains(search) || ent.Description.Contains(search)).Select(ent => ent.ToBllMaterial());
+            return materialRepository.GetByPredicate(ent => ent.FileName.ToLower().Contains(search.ToLower()) 
+                || (!String.IsNullOrEmpty(ent.Description) && ent.Description.ToLower().Contains(search.ToLower()))).Select(ent => ent.ToBllMaterial());
         }
 
         public MaterialEntity GetMaterialById(int Id)

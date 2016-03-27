@@ -13,7 +13,7 @@ namespace BLL.Interface.Services
         UserEntity GetUserById(int id);
         IEnumerable<UserEntity> GetAllUserEntities();
         IEnumerable<UserEntity> GetAllUserEntities(int start);
-        IEnumerable<UserEntity> GetAllUserEntities(string searchString);
+        IEnumerable<UserEntity> GetAllUserEntities(string search);
         void CreateUser(UserEntity user);
         void UpdateUser(UserEntity user);
         IEnumerable<CourseEntity> GetAllCourseEntities();

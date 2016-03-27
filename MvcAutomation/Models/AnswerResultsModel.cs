@@ -14,6 +14,7 @@ namespace MvcAutomation.Models
         public string Speciality { get; set; }
         public string Course { get; set; }
         public string Group { get; set; }
+        public string TestName { get; set; }
         public double Mark { get; set; }
     }
 }
