@@ -87,7 +87,7 @@ angular.module('tableModule', [])
     .done(function (msg) {
         var targetArea = $('#targetArea');
         targetArea.attr('ng-controller', 'tableController');
-        targetArea.append('<label>Регулярное выражение: ' + msg.Regex + '</label>' +
+        targetArea.append('<label>Regular expression: ' + msg.Regex + '</label>' +
             '<br/><br/>' +
             '<input type="button" class="add add-row" alt="Add row" title="Добавить ряд" ng-click="addRow()"/>' +
             '<input type="button" class="add add-column" alt="Add col" title="Добавить столбец" ng-click="addCol()"/>' +
@@ -97,7 +97,7 @@ angular.module('tableModule', [])
             '<table class="automata-table" border="1">' +
                 '<tr><td>{{ valObject.TableArray[0][0] }}</td></tr>' +
             '</table>' +
-            '<label>Описание:</label>' +
+            '<label>Description:</label>' +
             '<span id="modelDescription" style="white-space: pre-line">' + msg.Description + '</span>' +
             '<br/><input type="submit" value="submit" ng-click="sendValues()"/>');
 

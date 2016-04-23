@@ -11,6 +11,10 @@ body {
     background-repeat: no-repeat;
 }
 
+hr {
+    margin: 0 0 0 0;
+}
+
 input[type="submit"].spinner,
 input[type="submit"]:hover.spinner {
     background: url('/Content/Images/spinner.gif') no-repeat;
@@ -200,4 +204,23 @@ input[disabled]:hover {
 
 .reversePage {
     background-image: url('/Content/Images/reverse.png');
+}
+
+.result-display {
+    border-radius: 10px;
+    border: 2px solid #00529B;
+    margin: 20px 0 20px 0;
+    width: 350px;
+    height: 100px;
+    background: #fcc903;
+    padding: 0 10px 0 10px;
+}
+
+.left-float {
+    float: left;
+}
+
+.mark-div {
+    text-align: center;
+    font-size: 20px;
 }

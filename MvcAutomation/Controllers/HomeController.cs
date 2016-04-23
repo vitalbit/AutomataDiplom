@@ -161,16 +161,19 @@ namespace MvcAutomation.Controllers
             List<UserRole> userRole = new List<UserRole>();
             foreach(UserEntity user in users)
             {
-                userRole.Add(new UserRole()
+                if (user.Role != null)
                 {
-                    Email = user.Email,
-                    Course = user.Course != null ? user.Course.Name : null,
-                    FirstName = user.FirstName,
-                    Group = user.Group != null ? user.Group.Name : null,
-                    LastName = user.LastName,
-                    Role = user.Role.Name,
-                    Speciaity = user.Speciality != null ? user.Speciality.Name : null
-                });
+                    userRole.Add(new UserRole()
+                    {
+                        Email = user.Email,
+                        Course = user.Course != null ? user.Course.Name : null,
+                        FirstName = user.FirstName,
+                        Group = user.Group != null ? user.Group.Name : null,
+                        LastName = user.LastName,
+                        Role = user.Role.Name,
+                        Speciaity = user.Speciality != null ? user.Speciality.Name : null
+                    });
+                }
             }
             return Json(new { users = userRole, roles = roles });
         }
@@ -195,16 +198,19 @@ namespace MvcAutomation.Controllers
             List<UserRole> userRole = new List<UserRole>();
             foreach (UserEntity user in users)
             {
-                userRole.Add(new UserRole()
+                if (user.Role != null)
                 {
-                    Email = user.Email,
-                    Course = user.Course != null ? user.Course.Name : null,
-                    FirstName = user.FirstName,
-                    Group = user.Group != null ? user.Group.Name : null,
-                    LastName = user.LastName,
-                    Role = user.Role.Name,
-                    Speciaity = user.Speciality != null ? user.Speciality.Name : null
-                });
+                    userRole.Add(new UserRole()
+                    {
+                        Email = user.Email,
+                        Course = user.Course != null ? user.Course.Name : null,
+                        FirstName = user.FirstName,
+                        Group = user.Group != null ? user.Group.Name : null,
+                        LastName = user.LastName,
+                        Role = user.Role.Name,
+                        Speciaity = user.Speciality != null ? user.Speciality.Name : null
+                    });
+                }
             }
             return Json(new { users = userRole, roles = roles });
         }

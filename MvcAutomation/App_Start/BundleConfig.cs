@@ -36,12 +36,14 @@ namespace MvcAutomation
                 "~/Scripts/homeScripts/materialAction.js",
                 "~/Scripts/homeScripts/addTestSection.js",
                 "~/Scripts/homeScripts/testAction.js",
-                "~/Scripts/homeScripts/lastResultsSection.js",
-                "~/Scripts/homeScripts/resultsAction.js"));
+                "~/Scripts/homeScripts/TestResultsPage/resultsAction.js"));
+            bundles.Add(new ScriptBundle("~/bundles/homeAdminScripts").Include(
+                "~/Scripts/homeScripts/TestResultsPage/lastResultsSection.js"));
             bundles.Add(new ScriptBundle("~/bundles/commonScripts").Include(
                 "~/Scripts/common/spinnerWidget.js",
                 "~/Scripts/common/searchWidget.js",
-                "~/Scripts/common/diagramWidget.js"));
+                "~/Scripts/common/diagramWidget.js",
+                "~/Scripts/common/HtmlLoader.js"));
         }
     }
 }
