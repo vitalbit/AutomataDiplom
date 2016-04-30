@@ -193,6 +193,7 @@
     <Content Include="Content\Images\delete_row.png" />
     <Content Include="Content\Images\Info-icon.png" />
     <Content Include="Content\Images\input-text-search.png" />
+    <Content Include="Content\Images\js-logo-badge.png" />
     <Content Include="Content\Images\spinner.gif" />
     <Content Include="Content\Images\table2_selection_row.png" />
     <Content Include="Content\Styles\AutomataTable.css" />
@@ -215,8 +216,11 @@
     <Content Include="Scripts\homeScripts\roleAction.js" />
     <Content Include="Scripts\common\searchWidget.js" />
     <Content Include="Scripts\homeScripts\studentAction.js" />
-    <Content Include="Scripts\homeScripts\testAction.js" />
+    <Content Include="Scripts\homeScripts\TestsPage\testAction.js" />
     <Content Include="Scripts\homeScripts\TestResultsPage\TestResultsDisplay.html" />
+    <Content Include="Scripts\homeScripts\TestsPage\TestInfoDisplay.html" />
+    <Content Include="Scripts\homeScripts\TestsPage\testsAdminAction.js" />
+    <Content Include="Scripts\homeScripts\TestsPage\TestViewEditDisplay.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -251,6 +255,7 @@
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\StartTest.cshtml" />
+    <Content Include="Views\Test\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

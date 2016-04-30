@@ -185,6 +185,13 @@ namespace MvcAutomation.Controllers
             return Json(new { results = this.ToModelResult(answers) });
         }
 
+        [HttpGet]
+        [Authorize(Roles="Admin")]
+        public ActionResult Edit(int testId)
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             testService.Dispose();

@@ -127,20 +127,20 @@ input[disabled]:hover {
 .col1 {
     /*background: #808080;*/
     height: 100%;
-    float: left;
-    width: 200px;
+    
+    width: 400px;
 }
 
 .col2 {
     /*background: #ECD5DE;*/
     height: 100%;
-    margin: 10px, 200px, 0, 200px;
+    margin: 10px, 400px, 0, 400px;
 }
 
 .col3 {
     /*background: #b94a48;*/
     height: 100%;
-    width: 200px;
+    width: 400px;
     float: right;
 }
 
@@ -181,7 +181,7 @@ input[disabled]:hover {
 }
 
 .testsPage,
-.addTestPage {
+.control-test-page {
     background-image: url('/Content/Images/checklist.jpg');
 }
 
@@ -206,6 +206,24 @@ input[disabled]:hover {
     background-image: url('/Content/Images/reverse.png');
 }
 
+.add-js-file {
+    background-image: url('/Content/Images/js-logo-badge.png');
+    border: 1px double #DDD;
+    border-radius: 5px;
+}
+
+.add-css-file {
+    background-image: url('/Content/Images/css3_logo.png');
+    border: 1px double #DDD;
+    border-radius: 5px;
+}
+
+.add-json-file {
+    background-image: url('/Content/Images/json_img.png');
+    border: 1px double #DDD;
+    border-radius: 5px;
+}
+
 .result-display {
     border-radius: 10px;
     border: 2px solid #00529B;
@@ -223,4 +241,17 @@ input[disabled]:hover {
 .mark-div {
     text-align: center;
     font-size: 20px;
+}
+
+.edit-icon {
+    background-size: 100px 100px;
+    display: block;
+    height: 100px;
+    width: 100px;
+}
+
+.edit-test-arrow {
+    float: left;
+    margin: 70px 0 0 30px;
+    background-image: url('/Content/Images/arrow-thick-right.png');
 }
