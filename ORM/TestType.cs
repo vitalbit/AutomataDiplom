@@ -10,6 +10,8 @@ namespace ORM
     {
         public int Id { get; set; }
         public string ModuleName { get; set; }
+        public string CssFileName { get; set; }
+        public string JsFileName { get; set; }
         public virtual ICollection<Test> Tests { get; set; }
 
         public TestType()

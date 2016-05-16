@@ -286,7 +286,9 @@ namespace BLL.Mappers
                 return new DalTestType()
                 {
                     Id = testType.Id,
-                    ModuleName = testType.ModuleName
+                    ModuleName = testType.ModuleName,
+                    CssFileName = testType.CssFileName,
+                    JsFileName = testType.JsFileName
                 };
             }
             return null;
@@ -299,7 +301,9 @@ namespace BLL.Mappers
                 return new TestTypeEntity()
                 {
                     Id = testType.Id,
-                    ModuleName = testType.ModuleName
+                    ModuleName = testType.ModuleName,
+                    CssFileName = testType.CssFileName,
+                    JsFileName = testType.JsFileName
                 };
             }
             return null;

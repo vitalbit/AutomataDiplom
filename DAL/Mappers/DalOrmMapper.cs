@@ -272,7 +272,9 @@ namespace DAL.Mappers
             return new DalTestType()
             {
                 Id = testType.Id,
-                ModuleName = testType.ModuleName
+                ModuleName = testType.ModuleName,
+                CssFileName = testType.CssFileName,
+                JsFileName = testType.JsFileName
             };
         }
 
@@ -281,7 +283,9 @@ namespace DAL.Mappers
             return new TestType()
             {
                 Id = testType.Id,
-                ModuleName = testType.ModuleName
+                ModuleName = testType.ModuleName,
+                CssFileName = testType.CssFileName,
+                JsFileName = testType.JsFileName
             };
         }
 

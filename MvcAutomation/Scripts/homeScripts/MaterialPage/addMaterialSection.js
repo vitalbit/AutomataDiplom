@@ -2,7 +2,9 @@
     $('#homePageMenu .menuArea .addMaterialPage').click(function (event) {
         event.preventDefault();
 
-        $("#homePageMenu .displayArea").html('<form method="post" id="fileinfo"><input id="fileInput" type="file" multiple/><input type="submit" value="Upload"/></form>');
+        var textTemplate = Automata.HtmlLoader.Load('/Scripts/homeScripts/MaterialPage/AddMaterialDisplay.html');
+
+        $("#homePageMenu .displayArea").html(textTemplate);
         $('#fileinfo').submit(function (event) {
             event.preventDefault();
             var formData = new FormData();

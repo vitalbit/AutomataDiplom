@@ -208,8 +208,9 @@
     <Content Include="Scripts\common\diagramWidget.js" />
     <Content Include="Scripts\common\HtmlLoader.js" />
     <Content Include="Scripts\common\spinnerWidget.js" />
-    <Content Include="Scripts\homeScripts\addMaterialSection.js" />
+    <Content Include="Scripts\homeScripts\MaterialPage\addMaterialSection.js" />
     <Content Include="Scripts\homeScripts\addTestSection.js" />
+    <Content Include="Scripts\homeScripts\MaterialPage\AddMaterialDisplay.html" />
     <Content Include="Scripts\homeScripts\TestResultsPage\lastResultsSection.js" />
     <Content Include="Scripts\homeScripts\materialAction.js" />
     <Content Include="Scripts\homeScripts\TestResultsPage\resultsAction.js" />
@@ -218,6 +219,7 @@
     <Content Include="Scripts\homeScripts\studentAction.js" />
     <Content Include="Scripts\homeScripts\TestsPage\testAction.js" />
     <Content Include="Scripts\homeScripts\TestResultsPage\TestResultsDisplay.html" />
+    <Content Include="Scripts\homeScripts\TestsPage\TestEdit.js" />
     <Content Include="Scripts\homeScripts\TestsPage\TestInfoDisplay.html" />
     <Content Include="Scripts\homeScripts\TestsPage\testsAdminAction.js" />
     <Content Include="Scripts\homeScripts\TestsPage\TestViewEditDisplay.html" />
@@ -259,6 +261,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\TestsFolder\" />
+    <Folder Include="Temp\" />
     <Folder Include="Views\Material\" />
     <Folder Include="Views\StructureOrganize\" />
     <Folder Include="Views\TestPassing\" />

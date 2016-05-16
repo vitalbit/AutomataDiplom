@@ -35,6 +35,14 @@ namespace MvcAutomation.Controllers
 
         [HttpGet]
         [Authorize]
+        public JsonResult GetType(int id)
+        {
+            TestTypeEntity test = testService.GetTypeById(id);
+            return Json(new { testType = test }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [Authorize]
         public ActionResult GetFiles()
         {
             List<TestFileEntity> testFiles = testService.GetAllTestFiles().ToList();
@@ -43,11 +51,23 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize(Roles="Admin")]
-        public ActionResult CreateType(string testType)
+        public ActionResult CreateType(string testType, string jsFile, string cssFile)
         {
+            var tempPath = Server.MapPath("~/Temp/");
+            var path = Server.MapPath("~/Scripts/TestsFolder/");
+
+            DirectoryInfo di = new DirectoryInfo(path);
+            di = di.CreateSubdirectory(testType);
+            FileInfo jsfi = new FileInfo(tempPath + jsFile);
+            jsfi.CopyTo(di.FullName + "\\" + jsFile);
+            FileInfo cssfi = new FileInfo(tempPath + cssFile);
+            cssfi.CopyTo(di.FullName + "\\" + cssFile);
+
             TestTypeEntity test = new TestTypeEntity()
             {
-                ModuleName = testType
+                ModuleName = testType,
+                CssFileName = cssFile,
+                JsFileName = jsFile
             };
             testService.CreateTestType(test);
             return Json(new { message = "Тип теста добавлен" });
@@ -70,6 +90,40 @@ namespace MvcAutomation.Controllers
                 testService.CreateTestFile(test);
             }
             return Json(new { message = "Test file has been added" });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public JsonResult AddJsFile()
+        {
+            string path = Server.MapPath("~/Temp/");
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            foreach (var jsfile in di.GetFiles("*.js"))
+            {
+                System.IO.File.Delete(jsfile.FullName);
+            }
+
+            HttpPostedFileBase file = Request.Files[0];
+            file.SaveAs(path + file.FileName);
+            return Json("Файл загружен");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public JsonResult AddCssFile()
+        {
+            string path = Server.MapPath("~/Temp/");
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            foreach (var cssfile in di.GetFiles("*.css"))
+            {
+                System.IO.File.Delete(cssfile.FullName);
+            }
+
+            HttpPostedFileBase file = Request.Files[0];
+            file.SaveAs(path + file.FileName);
+            return Json("Файл загружен");
         }
 
         protected override void Dispose(bool disposing)

@@ -10,5 +10,7 @@ namespace MvcAutomation.Models
         public int TestId { get; set; }
         public string TypeName { get; set; }
         public string TestName { get; set; }
+        public string JsFileName { get; set; }
+        public string CssFileName { get; set; }
     }
 }

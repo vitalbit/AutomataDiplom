@@ -96,6 +96,8 @@ namespace MvcAutomation.Controllers
                 {
                     TestId = test.Id,
                     TypeName = testType.ModuleName,
+                    JsFileName = testType.JsFileName,
+                    CssFileName = testType.CssFileName,
                     TestName = test.Name
                 });
         }
