@@ -12,5 +12,6 @@ namespace DAL.Interface.DTO
         public string ModuleName { get; set; }
         public string CssFileName { get; set; }
         public string JsFileName { get; set; }
+        public string DllFileName { get; set; }
     }
 }

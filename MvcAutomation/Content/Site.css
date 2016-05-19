@@ -218,6 +218,12 @@ input[disabled]:hover {
     border-radius: 5px;
 }
 
+.add-dll-file {
+    background-image: url('/Content/Images/dll-icon.png');
+    border: 1px double #DDD;
+    border-radius: 5px;
+}
+
 .add-json-file {
     background-image: url('/Content/Images/json_img.png');
     border: 1px double #DDD;
@@ -252,6 +258,5 @@ input[disabled]:hover {
 
 .edit-test-arrow {
     float: left;
-    margin: 70px 0 0 30px;
     background-image: url('/Content/Images/arrow-thick-right.png');
 }

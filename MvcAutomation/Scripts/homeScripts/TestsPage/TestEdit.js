@@ -58,6 +58,12 @@
         $("#css-input .css-file").click();
     });
 
+    $("#dll-input .add-dll-file").click(function (event) {
+        event.preventDefault();
+
+        $("#dll-input .dll-file").click();
+    });
+
     $("#json-input .add-json-file").click(function (event) {
         event.preventDefault();
 
@@ -74,6 +80,12 @@
         event.preventDefault();
 
         sendFile('css-file', '/TestType/AddCssFile');
+    });
+
+    $("#dll-input").submit(function (event) {
+        event.preventDefault();
+
+        sendFile('dll-file', '');
     });
 
     $("#json-input").submit(function (event) {
@@ -94,6 +106,12 @@
         $("#css-input").submit();
     });
 
+    $("#dll-input .dll-file").change(function () {
+        var fileName = $(this).val().replace("C:\\fakepath\\", "");
+        $(".edit-test-page .dll-filename").val(fileName);
+        $("#dll-input").submit();
+    });
+
     $("#json-input .json-file").change(function () {
         var fileName = $(this).val().replace("C:\\fakepath\\", "");
         $(".json-filename").val(fileName);
@@ -106,7 +124,7 @@
         $.ajax({
             method: "POST",
             url: "/TestType/CreateType",
-            data: { testType: $('#testType').val(), jsFile: $(".js-filename").val(), cssFile: $(".css-filename").val() }
+            data: { testType: $('#testType').val(), jsFile: $(".js-filename").val(), cssFile: $(".css-filename").val(), dllFile: $(".dll-filename").val() }
         })
         .done(function (msg) {
             updateTestTypes();
@@ -123,6 +141,7 @@
         .done(function (msg) {
             $(".js-filename").val(msg.testType.JsFileName);
             $(".css-filename").val(msg.testType.CssFileName);
+            $(".dll-filename").val(msg.testType.DllFileName);
             $("#testType").val(msg.testType.ModuleName);
         });
     });

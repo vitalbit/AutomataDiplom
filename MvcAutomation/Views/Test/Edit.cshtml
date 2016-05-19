@@ -16,15 +16,22 @@
             <center><a href="" class="add-css-file edit-icon" title="Добавить CSS файл"></a></center>
         </form>
         <input type="text" class="css-filename" name="cssFile" readonly />
+        <br />
+        <br />
+        <form method="post" id="dll-input">
+            <input type="file" class="dll-file" style="display:none" accept=".dll" />
+            <center><a href="" class="add-dll-file edit-icon" title="Добавить dll сборку"></a></center>
+        </form>
+        <input type="text" class="dll-filename" name="dllFile" readonly />
     </div>
-    <div class="edit-test-arrow edit-icon"></div>
-    <div style="float: left; width: 200px; margin: 110px 0 0 20px">
+    <div class="edit-test-arrow edit-icon" style="margin: 150px 0 0 30px;"></div>
+    <div style="float: left; width: 200px; margin: 180px 0 0 20px">
         <input type="text" id="testType" placeholder="Тип теста" />
         <input id="add-type" type="submit" value="Добавить тип" />
     </div>
     <div style="float: left; width: 100px; margin: 0 10px 0 150px">
         <label>Список типов</label>
-        <select id="type-select" size="10">
+        <select id="type-select" size="20">
             <option>Hello</option>
         </select>
     </div>
@@ -53,7 +60,7 @@
             <option>BSUIR</option>
         </select>
     </div>
-    <a href="" class="edit-test-arrow edit-icon"></a>
+    <a href="" class="edit-test-arrow edit-icon" style="margin: 55px 0 0 0"></a>
     <div style="float: left; width: 150px; margin: 0 0 0 30px">
         <label>Доступен группам: </label>
         <select size="10">
@@ -62,12 +69,12 @@
         </select>
     </div>
     <div style="clear: left">
-        <input id="test-name" style="float:right;" type="text" placeholder="Имя теста" />
+        <hr />
+        <br />
+        <input id="test-name" type="text" placeholder="Имя теста" />
+        <br />
+        <input id="test-create" style="width:100px" type="submit" value="OK" />
     </div>
-</div>
-
-<div style="clear: right">
-    <input id="test-create" style="width:100px;float:right;" type="submit" value="OK" />
 </div>
 
 @Scripts.Render("~/bundles/TestEdit")

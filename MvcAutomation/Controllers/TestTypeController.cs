@@ -51,7 +51,7 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize(Roles="Admin")]
-        public ActionResult CreateType(string testType, string jsFile, string cssFile)
+        public ActionResult CreateType(string testType, string jsFile, string cssFile, string dllFile)
         {
             var tempPath = Server.MapPath("~/Temp/");
             var path = Server.MapPath("~/Scripts/TestsFolder/");
@@ -62,12 +62,15 @@ namespace MvcAutomation.Controllers
             jsfi.CopyTo(di.FullName + "\\" + jsFile);
             FileInfo cssfi = new FileInfo(tempPath + cssFile);
             cssfi.CopyTo(di.FullName + "\\" + cssFile);
+            FileInfo dllfi = new FileInfo(tempPath + dllFile);
+            dllfi.CopyTo(di.FullName + "\\" + dllFile);
 
             TestTypeEntity test = new TestTypeEntity()
             {
                 ModuleName = testType,
                 CssFileName = cssFile,
-                JsFileName = jsFile
+                JsFileName = jsFile,
+                DllFileName = dllFile
             };
             testService.CreateTestType(test);
             return Json(new { message = "Тип теста добавлен" });
