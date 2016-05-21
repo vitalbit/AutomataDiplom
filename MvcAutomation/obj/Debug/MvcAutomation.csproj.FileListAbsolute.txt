@@ -71,3 +71,5 @@ D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\InputPostfixRegex.dll
 D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\InputPostfixRegex.pdb
 D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\GradeSystems.dll
 D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\GradeSystems.pdb
+D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\TestEndpoints.dll
+D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\TestEndpoints.pdb

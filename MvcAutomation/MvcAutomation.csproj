@@ -168,6 +168,7 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TestPassingController.cs" />
     <Compile Include="Controllers\TestTypeController.cs" />
+    <Compile Include="DllModulesResolver\ModuleResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +293,10 @@
     <ProjectReference Include="..\InputPostfixRegex\InputPostfixRegex.csproj">
       <Project>{e3d8362b-aef5-4f62-9603-8f75a822e1c3}</Project>
       <Name>InputPostfixRegex</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestEndpoints\TestEndpoints.csproj">
+      <Project>{87f501fa-2fb7-4d86-8916-81f3b10e8573}</Project>
+      <Name>TestEndpoints</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputPostfixRegex", "InputP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeSystems", "GradeSystems\GradeSystems.csproj", "{92F99A17-4B2F-4364-9279-509471458956}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEndpoints", "TestEndpoints\TestEndpoints.csproj", "{87F501FA-2FB7-4D86-8916-81F3B10E8573}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{92F99A17-4B2F-4364-9279-509471458956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92F99A17-4B2F-4364-9279-509471458956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92F99A17-4B2F-4364-9279-509471458956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87F501FA-2FB7-4D86-8916-81F3B10E8573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87F501FA-2FB7-4D86-8916-81F3B10E8573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87F501FA-2FB7-4D86-8916-81F3B10E8573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87F501FA-2FB7-4D86-8916-81F3B10E8573}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

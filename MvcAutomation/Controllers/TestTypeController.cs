@@ -59,11 +59,11 @@ namespace MvcAutomation.Controllers
             DirectoryInfo di = new DirectoryInfo(path);
             di = di.CreateSubdirectory(testType);
             FileInfo jsfi = new FileInfo(tempPath + jsFile);
-            jsfi.CopyTo(di.FullName + "\\" + jsFile);
+            jsfi.CopyTo(di.FullName + "\\" + jsFile, true);
             FileInfo cssfi = new FileInfo(tempPath + cssFile);
-            cssfi.CopyTo(di.FullName + "\\" + cssFile);
+            cssfi.CopyTo(di.FullName + "\\" + cssFile, true);
             FileInfo dllfi = new FileInfo(tempPath + dllFile);
-            dllfi.CopyTo(di.FullName + "\\" + dllFile);
+            dllfi.CopyTo(di.FullName + "\\" + dllFile, true);
 
             TestTypeEntity test = new TestTypeEntity()
             {
