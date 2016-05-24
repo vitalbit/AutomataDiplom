@@ -275,7 +275,8 @@ namespace DAL.Mappers
                 ModuleName = testType.ModuleName,
                 CssFileName = testType.CssFileName,
                 JsFileName = testType.JsFileName,
-                DllFileName = testType.DllFileName
+                DllFileName = testType.DllFileName,
+                ResolveDllType = testType.ResolveDllType
             };
         }
 
@@ -287,7 +288,8 @@ namespace DAL.Mappers
                 ModuleName = testType.ModuleName,
                 CssFileName = testType.CssFileName,
                 JsFileName = testType.JsFileName,
-                DllFileName = testType.DllFileName
+                DllFileName = testType.DllFileName,
+                ResolveDllType = testType.ResolveDllType
             };
         }
 

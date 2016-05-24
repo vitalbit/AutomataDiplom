@@ -51,7 +51,7 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize(Roles="Admin")]
-        public ActionResult CreateType(string testType, string jsFile, string cssFile, string dllFile)
+        public ActionResult CreateType(string testType, string jsFile, string cssFile, string dllFile, string resolveType)
         {
             var tempPath = Server.MapPath("~/Temp/");
             var path = Server.MapPath("~/Scripts/TestsFolder/");
@@ -70,7 +70,8 @@ namespace MvcAutomation.Controllers
                 ModuleName = testType,
                 CssFileName = cssFile,
                 JsFileName = jsFile,
-                DllFileName = dllFile
+                DllFileName = dllFile,
+                ResolveDllType = resolveType
             };
             testService.CreateTestType(test);
             return Json(new { message = "Тип теста добавлен" });
@@ -122,6 +123,22 @@ namespace MvcAutomation.Controllers
             foreach (var cssfile in di.GetFiles("*.css"))
             {
                 System.IO.File.Delete(cssfile.FullName);
+            }
+
+            HttpPostedFileBase file = Request.Files[0];
+            file.SaveAs(path + file.FileName);
+            return Json("Файл загружен");
+        }
+
+        [HttpPost]
+        public JsonResult AddDllFile()
+        {
+            string path = Server.MapPath("~/Temp/");
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            foreach (var dllfile in di.GetFiles("*.dll"))
+            {
+                System.IO.File.Delete(dllfile.FullName);
             }
 
             HttpPostedFileBase file = Request.Files[0];

@@ -1,5 +1,0 @@
-D:\DIPLOM\AutomataDiplom\InputPostfixRegex\bin\Debug\InputPostfixRegex.dll
-D:\DIPLOM\AutomataDiplom\InputPostfixRegex\bin\Debug\InputPostfixRegex.pdb
-D:\DIPLOM\AutomataDiplom\InputPostfixRegex\obj\Debug\InputPostfixRegex.csprojResolveAssemblyReference.cache
-D:\DIPLOM\AutomataDiplom\InputPostfixRegex\obj\Debug\InputPostfixRegex.dll
-D:\DIPLOM\AutomataDiplom\InputPostfixRegex\obj\Debug\InputPostfixRegex.pdb

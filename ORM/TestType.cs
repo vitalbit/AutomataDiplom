@@ -13,6 +13,7 @@ namespace ORM
         public string CssFileName { get; set; }
         public string JsFileName { get; set; }
         public string DllFileName { get; set; }
+        public string ResolveDllType { get; set; }
         public virtual ICollection<Test> Tests { get; set; }
 
         public TestType()

@@ -98,7 +98,9 @@ namespace MvcAutomation.Controllers
                     TypeName = testType.ModuleName,
                     JsFileName = testType.JsFileName,
                     CssFileName = testType.CssFileName,
-                    TestName = test.Name
+                    TestName = test.Name,
+                    DllFilePath = testType.ModuleName + '/' + testType.DllFileName,
+                    ResolveDllType = testType.ResolveDllType
                 });
         }
 

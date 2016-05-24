@@ -1,6 +1,6 @@
 ﻿using BLL.Interface.Entities;
 using BLL.Interface.Services;
-using InputPostfixRegex;
+using MvcAutomation.DllModulesResolver;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,6 +11,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using TestEndpoints;
 
 namespace MvcAutomation.Controllers
 {
@@ -49,15 +50,12 @@ namespace MvcAutomation.Controllers
 
         [HttpGet]
         [Authorize]
-        public void ImageForPolish(string polish)
+        public void Image(string input, string resolveDll, string resolveType)
         {
-            ExprNameArray expression;
-            expression.name = "";
-            expression.shortName = "";
-            expression.arrPolish = polish.Split(' ');
+            resolveDll = Server.MapPath("~/Scripts/TestsFolder/" + resolveDll);
+            IImageTestEndpoints endpoint = ModuleResolver.GetImageDll(resolveDll, resolveType);
+            Bitmap bitmap = endpoint.GetImage(input);
 
-            Bitmap bitmap = TreeChart.DrawBitmap(expression);
-            
             Response.ContentType = "image/bmp";
             bitmap.Save(Response.OutputStream, ImageFormat.Bmp);
         }

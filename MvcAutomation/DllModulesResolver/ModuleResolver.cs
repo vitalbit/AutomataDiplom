@@ -9,11 +9,21 @@ namespace MvcAutomation.DllModulesResolver
 {
     public static class ModuleResolver
     {
-        public static ITestEndpoints GetDll(string dllPath, string type)
+        public static ITestEndpoints GetAppDll(string dllPath, string type)
+        {
+            return (ITestEndpoints)ModuleResolver.GetDll(dllPath, type);
+        }
+
+        public static IImageTestEndpoints GetImageDll(string dllPath, string type)
+        {
+            return (IImageTestEndpoints)ModuleResolver.GetDll(dllPath, type);
+        }
+
+        private static object GetDll(string dllPath, string type)
         {
             var DLL = Assembly.LoadFile(dllPath);
             Type theType = DLL.GetType(type);
-            return (ITestEndpoints)Activator.CreateInstance(theType);
+            return Activator.CreateInstance(theType);
         }
     }
 }

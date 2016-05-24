@@ -13,5 +13,6 @@ namespace BLL.Interface.Entities
         public string CssFileName { get; set; }
         public string JsFileName { get; set; }
         public string DllFileName { get; set; }
+        public string ResolveDllType { get; set; }
     }
 }

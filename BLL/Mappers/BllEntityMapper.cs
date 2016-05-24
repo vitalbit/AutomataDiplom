@@ -289,7 +289,8 @@ namespace BLL.Mappers
                     ModuleName = testType.ModuleName,
                     CssFileName = testType.CssFileName,
                     JsFileName = testType.JsFileName,
-                    DllFileName = testType.DllFileName
+                    DllFileName = testType.DllFileName,
+                    ResolveDllType = testType.ResolveDllType
                 };
             }
             return null;
@@ -305,7 +306,8 @@ namespace BLL.Mappers
                     ModuleName = testType.ModuleName,
                     CssFileName = testType.CssFileName,
                     JsFileName = testType.JsFileName,
-                    DllFileName = testType.DllFileName
+                    DllFileName = testType.DllFileName,
+                    ResolveDllType = testType.ResolveDllType
                 };
             }
             return null;

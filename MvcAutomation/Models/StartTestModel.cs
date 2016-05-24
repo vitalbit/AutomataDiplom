@@ -12,5 +12,7 @@ namespace MvcAutomation.Models
         public string TestName { get; set; }
         public string JsFileName { get; set; }
         public string CssFileName { get; set; }
+        public string DllFilePath { get; set; }
+        public string ResolveDllType { get; set; }
     }
 }

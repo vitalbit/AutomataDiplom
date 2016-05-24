@@ -114,6 +114,7 @@ namespace MvcAutomation.Controllers
         }
 
         #region ChangePassword
+        // http://localhost:8881/Home/ChangePassword
         [Authorize]
         [HttpGet]
         public ActionResult ChangePassword()

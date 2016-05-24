@@ -85,7 +85,7 @@
     $("#dll-input").submit(function (event) {
         event.preventDefault();
 
-        sendFile('dll-file', '');
+        sendFile('dll-file', '/TestType/AddDllFile');
     });
 
     $("#json-input").submit(function (event) {
@@ -124,7 +124,7 @@
         $.ajax({
             method: "POST",
             url: "/TestType/CreateType",
-            data: { testType: $('#testType').val(), jsFile: $(".js-filename").val(), cssFile: $(".css-filename").val(), dllFile: $(".dll-filename").val() }
+            data: { testType: $('#testType').val(), jsFile: $(".js-filename").val(), cssFile: $(".css-filename").val(), dllFile: $(".dll-filename").val(), resolveType: $(".dll-type-resolve").val() }
         })
         .done(function (msg) {
             updateTestTypes();
@@ -142,6 +142,7 @@
             $(".js-filename").val(msg.testType.JsFileName);
             $(".css-filename").val(msg.testType.CssFileName);
             $(".dll-filename").val(msg.testType.DllFileName);
+            $(".dll-type-resolve").val(msg.testType.ResolveDllType);
             $("#testType").val(msg.testType.ModuleName);
         });
     });
