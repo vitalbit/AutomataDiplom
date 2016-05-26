@@ -1,0 +1,23 @@
+Public Alphabet Partion List
+classPartList.Count=4
+
+Class(0) : 0 = [0-9]
+subset.Count :(10)
+
+Class(1) : A = [A-Z_]
+subset.Count :(27)
+
+Class(2) : z = [a-z]
+subset.Count :(26)
+
+Class(3) : \xff = [\x00-/:-@[-^`{-\xff]
+subset.Count :(193)
+*****
+ Public Alphabet Partion List as a context of the Named Expressions is correct!
+ Partition Errors (0)
+
+Private Alphabet Presentation for Regular Expression <Identifiers>
+Class(0) : 0 = 0;
+Class(1) : A = A;
+Class(2) : z = z;
+Class(3) : \xff = \xff;

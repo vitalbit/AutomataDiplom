@@ -1,0 +1,48 @@
+Result of Verification of all Expressions:
+Name Regular Expression: Identifiers
+Alphabet Partion List
+classPartList.Count=3
+
+Class(0) : 0 = [0-9]
+subset.Count :(10)
+
+Class(1) : A = [A-Z_]
+subset.Count :(27)
+
+Class(2) : z = [a-z]
+subset.Count :(26)
+
+Class(3) : \xff = [\x00-/:-@[-^`{-\xff]
+subset.Count :(193)
+*****
+Complement built
+ Alphabet Partion List as a context of the Named Expression is correct!
+ Partition Errors (0)
+Named Expression
+Identifiers = 
+	<z>
+	<z>
+	<z>
+	<Join>
+	<A>
+	<Join>
+	<0>
+	<Join>
+	<Star>
+	<Concat>
+ Named Expression is Correct in the Correct Context!
+ Context Errors (0)
+Diagramm in Private Alphabet of Named Expression
+Identifiers = 
+(00000,z,00001)
+(00001,"",00002)
+(00002,0,00002)
+(00002,A,00002)
+(00002,z,00002)
+(00002,z,00002)
+(00002,"",00003)
+Summary
+Partition Errors: 00000
+Context Errors: 00000
+*****
+Correct regularExpList! Do Intersection of Partions!

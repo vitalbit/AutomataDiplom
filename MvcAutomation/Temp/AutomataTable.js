@@ -63,8 +63,7 @@ angular.module('tableModule', [])
 		$scope.sendValues = function () {
 		    $scope.valObject.Id = $('#testArea input[type="hidden"]')[0].value;
 		    $scope.valObject.DllFilePath = $('#testArea > input[type="hidden"]')[1].value;
-		    $scope.valObject.ResolveDllType = $('#testArea > input[type="hidden"]')[2].value;
-		    $scope.valObject.Description = $('#modelDescription').text();
+            $scope.valObject.ResolveDllType = $('#testArea > input[type="hidden"]')[2].value;
 			$scope.valObject.Cols = col;
 			$scope.valObject.Rows = row;
 			var TestResultsModel = $scope.valObject;
@@ -97,7 +96,7 @@ angular.module('tableModule', [])
         var targetArea = $('#targetArea');
         targetArea.attr('ng-controller', 'tableController');
         targetArea.append('<label>Description:</label><br/>' +
-            '<span id="modelDescription" style="white-space: pre-line">' + msg.Description + '</span><br/>' +
+            '<span id="modelDescription" style="white-space: pre-line" ng-model="valObject.Description">' + msg.Description + '</span><br/>' +
             '<label>Regular expression: </label> ' +
             '<input type="text" placeholder="Regex" ng-model="valObject.Regex"/><br/>' +
             '<label>Alphabet decomposition</label><br/>' +

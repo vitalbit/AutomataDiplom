@@ -263,6 +263,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Material\" />
+    <Folder Include="ProjectsExpressions\" />
     <Folder Include="Scripts\TestsFolder\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\Material\" />

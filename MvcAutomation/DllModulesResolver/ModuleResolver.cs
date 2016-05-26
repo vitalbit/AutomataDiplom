@@ -9,6 +9,11 @@ namespace MvcAutomation.DllModulesResolver
 {
     public static class ModuleResolver
     {
+        public static ITransform GetTransformDll(string dllPath, string type)
+        {
+            return (ITransform)ModuleResolver.GetDll(dllPath, type);
+        }
+
         public static ITestEndpoints GetAppDll(string dllPath, string type)
         {
             return (ITestEndpoints)ModuleResolver.GetDll(dllPath, type);

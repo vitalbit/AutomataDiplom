@@ -33,13 +33,23 @@ namespace MvcAutomation.Controllers
 
         private class DescriptionReg
         {
-            public string Regex { get; set; }
             public string Description { get; set; }
         }
 
         [HttpPost]
         [Authorize]
         public ActionResult CurrentFile(int testId)
+        {
+            TestEntity test = testService.GetTestById(testId);
+            List<TestFileEntity> testFiles = new List<TestFileEntity>(test.TestFiles);
+            StreamReader sr = new StreamReader(new MemoryStream(testFiles[0].Content));
+            DescriptionReg descr = new JavaScriptSerializer().Deserialize<DescriptionReg>(sr.ReadToEnd());
+            return Json(descr);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult CurrentFileWithoutTransform(int testId)
         {
             TestEntity test = testService.GetTestById(testId);
             List<TestFileEntity> testFiles = new List<TestFileEntity>(test.TestFiles);

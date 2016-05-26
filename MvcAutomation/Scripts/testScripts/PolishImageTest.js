@@ -5,7 +5,7 @@
 
     $.ajax({
         method: "POST",
-        url: "/TestPassing/CurrentFile",
+        url: "/TestPassing/CurrentFileWithoutTransform",
         data: { testId: testId }
     })
     .done(function (msg) {

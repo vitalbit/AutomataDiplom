@@ -1,6 +1,7 @@
 ﻿using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using GradeSystems;
+using MvcAutomation.DllModulesResolver;
 using MvcAutomation.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using TestEndpoints;
 
 namespace MvcAutomation.Controllers
 {
@@ -41,7 +43,7 @@ namespace MvcAutomation.Controllers
         {
             IEnumerable<TestEntity> tests = testService.GetAllTests(start);
             List<TestModel> result = new List<TestModel>();
-            foreach(TestEntity test in tests)
+            foreach (TestEntity test in tests)
             {
                 result.Add(new TestModel()
                     {
@@ -70,7 +72,7 @@ namespace MvcAutomation.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(int typeId, int fileId, string testName)
         {
             TestFileEntity testFile = testService.GetFileById(fileId);
@@ -104,30 +106,71 @@ namespace MvcAutomation.Controllers
                 });
         }
 
-        [HttpPost]
-        [Authorize]
-        public ActionResult CompareResults(TestResultsModel result)
+        private class ResolveInformation
         {
-            TestEntity test = testService.GetTestById(result.Id);
-            List<TestFileEntity> files = test.TestFiles.ToList();
-            StreamReader sr = new StreamReader(new MemoryStream(files[0].Content));
-            TestResultsModel answer = new JavaScriptSerializer().Deserialize<TestResultsModel>(sr.ReadToEnd());
-            TableGradeSystem tg = new TableGradeSystem();
-            double mark = tg.Grade(result, answer);
-            AnswerEntity answerEnt = new AnswerEntity()
-            {
-                Content = System.Text.Encoding.Default.GetBytes(new JavaScriptSerializer().Serialize(result)),
-                Mark = mark,
-                TestId = test.Id,
-                UserId = userService.GetUserByEmail(User.Identity.Name).Id,
-                TestEndTime = DateTime.Now
-            };
-            testService.CreateAnswer(answerEnt);
-            return Json(new { Mark = mark });
+            public int Id { get; set; }
+            public string Description { get; set; }
+            public string DllFilePath { get; set; }
+            public string ResolveDllType { get; set; }
         }
 
         [HttpPost]
-        [Authorize(Roles="Admin")]
+        [Authorize]
+        public ActionResult CompareResults(string result)
+        {
+            ResolveInformation inf = new JavaScriptSerializer().Deserialize<ResolveInformation>(result);
+            inf.DllFilePath = Server.MapPath("~/Scripts/TestsFolder/" + inf.DllFilePath);
+            ITransform transform = ModuleResolver.GetTransformDll(inf.DllFilePath, inf.ResolveDllType);
+            string studentFile = transform.TransformFileFromClient(result);
+            string studentDirPath = Server.MapPath("~/ProjectsExpressions");
+            DirectoryInfo projectExpr = new DirectoryInfo(studentDirPath);
+            DirectoryInfo studentName = new DirectoryInfo(studentDirPath + "/" + User.Identity.Name);
+            DirectoryInfo testDir = new DirectoryInfo(studentDirPath + "/" + User.Identity.Name + "/" + inf.Description);
+
+            if (!projectExpr.GetDirectories().Contains(studentName))
+                studentName.Create();
+            if (studentName.GetDirectories().Contains(testDir))
+                testDir.Delete();
+            testDir.Create();
+
+            FileInfo studentFileInfo = new FileInfo(testDir.FullName + "/" + "Input.rgl");
+
+            using (StreamWriter writer = new StreamWriter(studentFileInfo.Create()))
+            {
+                writer.Write(studentFile);
+            }
+
+            ITestEndpoints testModule = ModuleResolver.GetAppDll(inf.DllFilePath, inf.ResolveDllType);
+            string gradeResult = testModule.Grade(testDir.FullName);
+
+            //TestResultsModel myresult = new JavaScriptSerializer().Deserialize<TestResultsModel>(result);
+
+            TestEntity test = testService.GetTestById(inf.Id);
+            //List<TestFileEntity> files = test.TestFiles.ToList();
+            //StreamReader sr = new StreamReader(new MemoryStream(files[0].Content));
+            //TestResultsModel answer = new JavaScriptSerializer().Deserialize<TestResultsModel>(sr.ReadToEnd());
+            //TableGradeSystem tg = new TableGradeSystem();
+            //double mark = 0;// tg.Grade(result, answer);
+
+            if (gradeResult == "0")
+            {
+                gradeResult = "10";
+                AnswerEntity answerEnt = new AnswerEntity()
+                {
+                    Content = System.Text.Encoding.Default.GetBytes(result),
+                    Mark = 10,
+                    TestId = test.Id,
+                    UserId = userService.GetUserByEmail(User.Identity.Name).Id,
+                    TestEndTime = DateTime.Now
+                };
+                testService.CreateAnswer(answerEnt);
+            }
+            
+            return Json(new { Mark = gradeResult });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult GetAnswers(int start)
         {
             IEnumerable<AnswerEntity> answers = testService.GetAllAnswers(start);
@@ -135,7 +178,7 @@ namespace MvcAutomation.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult SearchAnswer(string search)
         {
             IEnumerable<AnswerEntity> answers = testService.GetAllAnswers(search);
@@ -159,7 +202,7 @@ namespace MvcAutomation.Controllers
                 TestEntity test = testService.GetTestById(answer.TestId);
                 answerResults.Add(new AnswerResultsModel()
                 {
-                    Course = user.Course !=null ? user.Course.Name : "",
+                    Course = user.Course != null ? user.Course.Name : "",
                     Faculty = user.Faculty != null ? user.Faculty.Name : "",
                     FirstName = user.FirstName,
                     Group = user.Group != null ? user.Group.Name : "",
@@ -190,7 +233,7 @@ namespace MvcAutomation.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int testId)
         {
             return View();
@@ -202,5 +245,5 @@ namespace MvcAutomation.Controllers
             userService.Dispose();
             base.Dispose(disposing);
         }
-	}
+    }
 }
