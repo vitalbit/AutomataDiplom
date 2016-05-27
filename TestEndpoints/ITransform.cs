@@ -10,5 +10,6 @@ namespace TestEndpoints
     {
         string TransformFileToClient(string file);
         string TransformFileFromClient(string file);
+        string TransformFileFromClient2(string file);
     }
 }

@@ -1,0 +1,36 @@
+Polish of Named Expression
+MyId = 
+<z>
+<A>
+<Join>
+<z>
+<z>
+<Join>
+<A>
+<Join>
+<0>
+<Join>
+<Star>
+<Concat>
+<z>
+<A>
+<Join>
+<0>
+<Join>
+<Star>
+<Concat>
+
+Private Partition
+
+Class(0) : 0 = [0-9]
+subset.Count :(10)
+
+Class(1) : A = [A-Z_]
+subset.Count :(27)
+
+Class(2) : z = [a-z]
+subset.Count :(26)
+
+Class(3) : \xff = [\x00-/:-@[-^`{-\xff]
+subset.Count :(193)
+*****

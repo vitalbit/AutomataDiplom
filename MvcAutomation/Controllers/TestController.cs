@@ -1,12 +1,12 @@
 ﻿using BLL.Interface.Entities;
 using BLL.Interface.Services;
-using GradeSystems;
 using MvcAutomation.DllModulesResolver;
 using MvcAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -142,29 +142,67 @@ namespace MvcAutomation.Controllers
 
             ITestEndpoints testModule = ModuleResolver.GetAppDll(inf.DllFilePath, inf.ResolveDllType);
             string gradeResult = testModule.Grade(testDir.FullName);
-
-            //TestResultsModel myresult = new JavaScriptSerializer().Deserialize<TestResultsModel>(result);
-
             TestEntity test = testService.GetTestById(inf.Id);
-            //List<TestFileEntity> files = test.TestFiles.ToList();
-            //StreamReader sr = new StreamReader(new MemoryStream(files[0].Content));
-            //TestResultsModel answer = new JavaScriptSerializer().Deserialize<TestResultsModel>(sr.ReadToEnd());
-            //TableGradeSystem tg = new TableGradeSystem();
-            //double mark = 0;// tg.Grade(result, answer);
+
+            if (gradeResult == "0")
+            {
+                string automataFile = transform.TransformFileFromClient2(result);
+                StringBuilder automataFileSb = new StringBuilder(automataFile);
+                automataFileSb.AppendLine("Private Partition");
+                automataFileSb.AppendLine();
+                FileInfo partitionFile = new FileInfo(testDir + "/" + inf.Description + "/" + inf.Description + "_Partition.txt");
+                string partition = "";
+                using (StreamReader reader = partitionFile.OpenText())
+                {
+                    partition = reader.ReadToEnd();
+                }
+                partition = partition.Replace("\n", "");
+                string[] lines = partition.Split(Environment.NewLine.ToCharArray()).Skip(3).ToArray();
+                int k = 0;
+                while (k != lines.Length && lines[k] != "*****")
+                {
+                    automataFileSb.AppendLine(lines[k++]);
+                }
+                automataFileSb.AppendLine("*****");
+
+                DirectoryInfo compareDir = testDir.CreateSubdirectory("Automata");
+                FileInfo studentAnswer = new FileInfo(compareDir.FullName + "/student_file.txt");
+                using (StreamWriter studentWriter = new StreamWriter(studentAnswer.Create()))
+                {
+                    studentWriter.Write(automataFileSb.ToString());
+                }
+
+                List<TestFileEntity> files = test.TestFiles.ToList();
+                StreamReader sr = new StreamReader(new MemoryStream(files[0].Content));
+                FileInfo rightAnswer = new FileInfo(compareDir.FullName + "/answer_file.txt");
+                using (StreamWriter answerWriter = new StreamWriter(rightAnswer.Create()))
+                {
+                    answerWriter.Write(sr.ReadToEnd());
+                }
+                sr.Close();
+
+                gradeResult = testModule.Grade(studentAnswer.FullName, rightAnswer.FullName);
+                if (gradeResult == "true")
+                    gradeResult = "0";
+            }
 
             if (gradeResult == "0")
             {
                 gradeResult = "10";
-                AnswerEntity answerEnt = new AnswerEntity()
-                {
-                    Content = System.Text.Encoding.Default.GetBytes(result),
-                    Mark = 10,
-                    TestId = test.Id,
-                    UserId = userService.GetUserByEmail(User.Identity.Name).Id,
-                    TestEndTime = DateTime.Now
-                };
-                testService.CreateAnswer(answerEnt);
             }
+            else
+            {
+                gradeResult = "0";
+            }
+            AnswerEntity answerEnt = new AnswerEntity()
+            {
+                Content = System.Text.Encoding.Default.GetBytes(result),
+                Mark = Double.Parse(gradeResult),
+                TestId = test.Id,
+                UserId = userService.GetUserByEmail(User.Identity.Name).Id,
+                TestEndTime = DateTime.Now
+            };
+            testService.CreateAnswer(answerEnt);
             
             return Json(new { Mark = gradeResult });
         }

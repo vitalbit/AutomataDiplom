@@ -287,10 +287,6 @@
       <Project>{0dc446fd-b223-4ad9-a88c-59f965e968e7}</Project>
       <Name>DependencyResolver</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GradeSystems\GradeSystems.csproj">
-      <Project>{92f99a17-4b2f-4364-9279-509471458956}</Project>
-      <Name>GradeSystems</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TestEndpoints\TestEndpoints.csproj">
       <Project>{87f501fa-2fb7-4d86-8916-81f3b10e8573}</Project>
       <Name>TestEndpoints</Name>

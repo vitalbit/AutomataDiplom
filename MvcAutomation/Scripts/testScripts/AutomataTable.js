@@ -91,7 +91,7 @@ angular.module('tableModule', [])
     $.ajax({
         method: "POST",
         url: "/TestPassing/CurrentFile",
-        data: { testId: testId }
+        data: { testId: testId, dllFile: dllFilePath, resolveType: resolveDllType }
     })
     .done(function (msg) {
         var targetArea = $('#targetArea');

@@ -38,12 +38,16 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CurrentFile(int testId)
+        public ActionResult CurrentFile(int testId, string dllFile, string resolveType)
         {
             TestEntity test = testService.GetTestById(testId);
             List<TestFileEntity> testFiles = new List<TestFileEntity>(test.TestFiles);
             StreamReader sr = new StreamReader(new MemoryStream(testFiles[0].Content));
-            DescriptionReg descr = new JavaScriptSerializer().Deserialize<DescriptionReg>(sr.ReadToEnd());
+
+            ITransform transform = ModuleResolver.GetTransformDll(Server.MapPath("~/Scripts/TestsFolder/" + dllFile), resolveType);
+            string description = transform.TransformFileToClient(sr.ReadToEnd());
+            sr.Close();
+            DescriptionReg descr = new DescriptionReg() { Description = description };
             return Json(descr);
         }
 
