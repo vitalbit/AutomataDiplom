@@ -116,6 +116,28 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize]
+        public ActionResult CompareResultsSimple(string result)
+        {
+            ResolveInformation inf = new JavaScriptSerializer().Deserialize<ResolveInformation>(result);
+            inf.DllFilePath = Server.MapPath("~/Scripts/TestsFolder/" + inf.DllFilePath);
+            ITestEndpoints testModule = ModuleResolver.GetAppDll(inf.DllFilePath, inf.ResolveDllType);
+            string gradeResult = testModule.Grade(result);
+            TestEntity test = testService.GetTestById(inf.Id);
+            AnswerEntity answerEnt = new AnswerEntity()
+            {
+                Content = System.Text.Encoding.Default.GetBytes(result),
+                Mark = Double.Parse(gradeResult),
+                TestId = test.Id,
+                UserId = userService.GetUserByEmail(User.Identity.Name).Id,
+                TestEndTime = DateTime.Now
+            };
+            testService.CreateAnswer(answerEnt);
+
+            return Json(new { Mark = gradeResult });
+        }
+
+        [HttpPost]
+        [Authorize]
         public ActionResult CompareResults(string result)
         {
             ResolveInformation inf = new JavaScriptSerializer().Deserialize<ResolveInformation>(result);
@@ -182,7 +204,7 @@ namespace MvcAutomation.Controllers
                 sr.Close();
 
                 gradeResult = testModule.Grade(studentAnswer.FullName, rightAnswer.FullName);
-                if (gradeResult == "true")
+                if (gradeResult == "True")
                     gradeResult = "0";
             }
 
@@ -240,13 +262,13 @@ namespace MvcAutomation.Controllers
                 TestEntity test = testService.GetTestById(answer.TestId);
                 answerResults.Add(new AnswerResultsModel()
                 {
-                    Course = user.Course != null ? user.Course.Name : "",
-                    Faculty = user.Faculty != null ? user.Faculty.Name : "",
+                    Course = user.UniversityInfo != null ? user.UniversityInfo.Course : "",
+                    Faculty = user.UniversityInfo != null ? user.UniversityInfo.Faculty : "",
                     FirstName = user.FirstName,
-                    Group = user.Group != null ? user.Group.Name : "",
+                    Group = user.UniversityInfo != null ? user.UniversityInfo.Group : "",
                     LastName = user.LastName,
                     Mark = answer.Mark,
-                    Speciality = user.Speciality != null ? user.Speciality.Name : "",
+                    Speciality = user.UniversityInfo != null ? user.UniversityInfo.Speciality : "",
                     AnswerId = answer.Id,
                     TestName = test.Name
                 });

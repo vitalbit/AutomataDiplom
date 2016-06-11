@@ -49,14 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\DalAnswer.cs" />
-    <Compile Include="DTO\DalCourse.cs" />
-    <Compile Include="DTO\DalFaculty.cs" />
-    <Compile Include="DTO\DalGroup.cs" />
     <Compile Include="DTO\DalMaterial.cs" />
     <Compile Include="DTO\DalRole.cs" />
-    <Compile Include="DTO\DalSpeciality.cs" />
     <Compile Include="DTO\DalTest.cs" />
     <Compile Include="DTO\DalTestType.cs" />
+    <Compile Include="DTO\DalUniversityInfo.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IDalEntity.cs" />
     <Compile Include="DTO\DalTestFile.cs" />

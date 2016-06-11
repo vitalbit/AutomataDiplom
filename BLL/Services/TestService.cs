@@ -63,8 +63,8 @@ namespace BLL.Services
         public IEnumerable<AnswerEntity> GetAllAnswers(string search)
         {
             IEnumerable<UserEntity> users = userRepository.GetByPredicate(ent => (!String.IsNullOrEmpty(ent.LastName) && !String.IsNullOrEmpty(ent.FirstName) && (ent.LastName.ToLower() + ' ' + ent.FirstName.ToLower()).Contains(search.ToLower()))
-                || (ent.Faculty != null && ent.Faculty.Name.ToLower().Contains(search.ToLower()))
-                || (ent.Speciality != null && ent.Speciality.Name.ToLower().Contains(search.ToLower()))).Select(ent => ent.ToBllUser());
+                || (ent.UniversityInfo != null && ent.UniversityInfo.Faculty.ToLower().Contains(search.ToLower()))
+                || (ent.UniversityInfo != null && ent.UniversityInfo.Speciality.ToLower().Contains(search.ToLower()))).Select(ent => ent.ToBllUser());
             return answerRepository.GetByPredicate(ent => users.Any(ent1 => ent1.Id == ent.UserId)).Select(ent => ent.ToBllAnswer());
         }
 

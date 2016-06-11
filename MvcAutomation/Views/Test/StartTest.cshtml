@@ -1,8 +1,12 @@
 ﻿@model MvcAutomation.Models.StartTestModel
 
 @{
-    string cssFile = "/Scripts/TestsFolder/" + @Model.TypeName + "/" + @Model.CssFileName;
-    string jsFile = "/Scripts/TestsFolder/" + @Model.TypeName + "/" + @Model.JsFileName;
+    string cssFile = "";
+    if (!string.IsNullOrWhiteSpace(Model.CssFileName))
+    {
+        cssFile= "/Scripts/TestsFolder/" + Model.TypeName + "/" + Model.CssFileName;
+    }
+    string jsFile = "/Scripts/TestsFolder/" + Model.TypeName + "/" + Model.JsFileName;
     ViewBag.Title = "StartTest";
 }
 

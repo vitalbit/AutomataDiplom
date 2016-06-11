@@ -21,10 +21,7 @@ namespace BLL.Mappers
                     LastName = user.LastName,
                     Password = user.Password,
                     Email = user.Email,
-                    CourseId = user.CourseId,
-                    GroupId = user.GroupId,
-                    SpecialityId = user.SpecialityId,
-                    FacultyId = user.FacultyId,
+                    UniversityInfoId = user.UniversityInfoId,
                     RoleId = user.RoleId
                 };
             }
@@ -42,16 +39,10 @@ namespace BLL.Mappers
                     LastName = user.LastName,
                     Password = user.Password,
                     Email = user.Email,
-                    CourseId = user.CourseId,
-                    GroupId = user.GroupId,
-                    SpecialityId = user.SpecialityId,
-                    FacultyId = user.FacultyId,
+                    UniversityInfoId = user.UniversityInfoId,
                     RoleId = user.RoleId,
-                    Course = user.Course.ToBllCourse(),
-                    Faculty = user.Faculty.ToBllFaculty(),
-                    Group = user.Group.ToBllGroup(),
                     Role = user.Role.ToBllRole(),
-                    Speciality = user.Speciality.ToBllSpeciality()
+                    UniversityInfo = user.UniversityInfo.ToBllUniversityInfo()
                 };
             }
             return null;
@@ -91,84 +82,6 @@ namespace BLL.Mappers
             return null;
         }
 
-        public static DalCourse ToDalCourse(this CourseEntity course)
-        {
-            if (course != null)
-            {
-                return new DalCourse()
-                {
-                    Id = course.Id,
-                    Name = course.Name
-                };
-            }
-            return null;
-        }
-
-        public static CourseEntity ToBllCourse(this DalCourse course)
-        {
-            if (course != null)
-            {
-                return new CourseEntity()
-                {
-                    Id = course.Id,
-                    Name = course.Name
-                };
-            }
-            return null;
-        }
-
-        public static DalFaculty ToDalFaculty(this FacultyEntity faculty)
-        {
-            if (faculty != null)
-            {
-                return new DalFaculty()
-                {
-                    Id = faculty.Id,
-                    Name = faculty.Name
-                };
-            }
-            return null;
-        }
-
-        public static FacultyEntity ToBllFaculty(this DalFaculty faculty)
-        {
-            if (faculty != null)
-            {
-                return new FacultyEntity()
-                {
-                    Id = faculty.Id,
-                    Name = faculty.Name
-                };
-            }
-            return null;
-        }
-
-        public static DalGroup ToDalGroup(this GroupEntity group)
-        {
-            if (group != null)
-            {
-                return new DalGroup()
-                {
-                    Id = group.Id,
-                    Name = group.Name
-                };
-            }
-            return null;
-        }
-
-        public static GroupEntity ToBllGroup(this DalGroup group)
-        {
-            if (group != null)
-            {
-                return new GroupEntity()
-                {
-                    Id = group.Id,
-                    Name = group.Name
-                };
-            }
-            return null;
-        }
-
         public static DalRole ToDalRole(this RoleEntity role)
         {
             if (role != null)
@@ -190,32 +103,6 @@ namespace BLL.Mappers
                 {
                     Id = role.Id,
                     Name = role.Name
-                };
-            }
-            return null;
-        }
-
-        public static DalSpeciality ToDalSpeciality(this SpecialityEntity speciality)
-        {
-            if (speciality != null)
-            {
-                return new DalSpeciality()
-                {
-                    Id = speciality.Id,
-                    Name = speciality.Name
-                };
-            }
-            return null;
-        }
-
-        public static SpecialityEntity ToBllSpeciality(this DalSpeciality speciality)
-        {
-            if (speciality != null)
-            {
-                return new SpecialityEntity()
-                {
-                    Id = speciality.Id,
-                    Name = speciality.Name
                 };
             }
             return null;
@@ -338,6 +225,42 @@ namespace BLL.Mappers
                     Description = material.Description,
                     FileName = material.FileName,
                     Id = material.Id
+                };
+            }
+            return null;
+        }
+
+        public static DalUniversityInfo ToDalUniversityInfo(this UniversityInfoEntity universityInfo)
+        {
+            if (universityInfo != null)
+            {
+                return new DalUniversityInfo()
+                {
+                    AdditionalInfo = universityInfo.AdditionalInfo,
+                    Course = universityInfo.Course,
+                    Faculty = universityInfo.Faculty,
+                    Group = universityInfo.Group,
+                    Id = universityInfo.Id,
+                    Speciality = universityInfo.Speciality,
+                    University = universityInfo.University
+                };
+            }
+            return null;
+        }
+
+        public static UniversityInfoEntity ToBllUniversityInfo(this DalUniversityInfo universityInfo)
+        {
+            if (universityInfo != null)
+            {
+                return new UniversityInfoEntity()
+                {
+                    AdditionalInfo = universityInfo.AdditionalInfo,
+                    Course = universityInfo.Course,
+                    Faculty = universityInfo.Faculty,
+                    Group = universityInfo.Group,
+                    Id = universityInfo.Id,
+                    Speciality = universityInfo.Speciality,
+                    University = universityInfo.University
                 };
             }
             return null;

@@ -6,16 +6,12 @@
 <div id="logRegArea">
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <form>
-        <span id="errorMsg" hidden></span>
-        <br />
-        <br />
-        <div id="stageOneLog">
-            <input id="emailText" type="text" placeholder="Email" />
-            <br />
-            <input id="stageOneSubmit" type="submit" value="OK" />
-        </div>
-    </form>
+    <span id="errorMsg" hidden></span>
+    <br />
+    <br />
+    <div id="loginArea">
+
+    </div>
     <div id="loginFields" hidden>
         @using (Html.BeginForm("Login", "Home", FormMethod.Post))
         {
@@ -27,16 +23,16 @@
         }
     </div>
     <div id="signupFields" hidden>
-        @using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
-        {
-            @Html.TextBoxFor(model => model.Email, new { placeholder = "Email", @readonly = "readonly" })
-            <br />
-            @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
-            <br />
-            @Html.PasswordFor(model => model.RepeatPassword, new { placeholder = "Repeat password" })
-            <br />
-            <input type="submit" value="OK" />
-        }
+        @*@using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+            {
+                @Html.TextBoxFor(model => model.Email, new { placeholder = "Email", @readonly = "readonly" })
+                <br />
+                @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
+                <br />
+                @Html.PasswordFor(model => model.RepeatPassword, new { placeholder = "Repeat password" })
+                <br />
+                <input type="submit" value="OK" />
+            }*@
     </div>
 </div>
 

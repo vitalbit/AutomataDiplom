@@ -15,21 +15,15 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork uow;
         private readonly IRepository<DalUser> userRepository;
-        private readonly IRepository<DalCourse> courseRepository;
-        private readonly IRepository<DalFaculty> facultyRepository;
-        private readonly IRepository<DalGroup> groupRepository;
         private readonly IRepository<DalRole> roleRepository;
-        private readonly IRepository<DalSpeciality> specialityRepository;
+        private readonly IRepository<DalUniversityInfo> universityInfoRepository;
 
         public UserService(IUnitOfWork uow)
         {
             this.uow = uow;
             this.userRepository = uow.UserRepository;
-            this.courseRepository = uow.CourseRepository;
-            this.facultyRepository = uow.FacultyRepository;
-            this.groupRepository = uow.GroupRepository;
             this.roleRepository = uow.RoleRepository;
-            this.specialityRepository = uow.SpecialityRepository;
+            this.universityInfoRepository = uow.UniversityInfoRepository;
         }
 
         public UserEntity GetUserByEmail(string email)
@@ -60,8 +54,9 @@ namespace BLL.Services
         {
             return userRepository.GetByPredicate(ent => ent.Email.ToLower().Contains(search.ToLower()) 
                 || (!String.IsNullOrEmpty(ent.LastName) && !String.IsNullOrEmpty(ent.FirstName) && (ent.LastName.ToLower() + ' ' + ent.FirstName.ToLower()).Contains(search.ToLower()))
-                || (ent.Faculty != null && ent.Faculty.Name.ToLower().Contains(search.ToLower()))
-                || (ent.Speciality != null && ent.Speciality.Name.ToLower().Contains(search.ToLower()))).Select(ent => ent.ToBllUser());
+                || (ent.UniversityInfo != null && ent.UniversityInfo.Faculty.ToLower().Contains(search.ToLower()))
+                || (ent.UniversityInfo != null && ent.UniversityInfo.Speciality.ToLower().Contains(search.ToLower())))
+                .Select(ent => ent.ToBllUser());
         }
 
         public void CreateUser(UserEntity user)
@@ -73,39 +68,6 @@ namespace BLL.Services
         public void UpdateUser(UserEntity user)
         {
             userRepository.Update(user.ToDalUser());
-            uow.Commit();
-        }
-
-        public IEnumerable<CourseEntity> GetAllCourseEntities()
-        {
-            return courseRepository.GetAll().Select(answ => answ.ToBllCourse());
-        }
-
-        public void CreateCourse(CourseEntity course)
-        {
-            courseRepository.Create(course.ToDalCourse());
-            uow.Commit();
-        }
-
-        public IEnumerable<FacultyEntity> GetAllFacultyEntities()
-        {
-            return facultyRepository.GetAll().Select(answ => answ.ToBllFaculty());
-        }
-
-        public void CreateFaculty(FacultyEntity faculty)
-        {
-            facultyRepository.Create(faculty.ToDalFaculty());
-            uow.Commit();
-        }
-
-        public IEnumerable<GroupEntity> GetAllGroupEntities()
-        {
-            return groupRepository.GetAll().Select(answ => answ.ToBllGroup());
-        }
-
-        public void CreateGroup(GroupEntity group)
-        {
-            groupRepository.Create(group.ToDalGroup());
             uow.Commit();
         }
 
@@ -125,14 +87,14 @@ namespace BLL.Services
             uow.Commit();
         }
 
-        public IEnumerable<SpecialityEntity> GetAllSpecialityEntities()
+        public IEnumerable<UniversityInfoEntity> GetAllUniversityInfoEntities()
         {
-            return specialityRepository.GetAll().Select(answ => answ.ToBllSpeciality());
+            return universityInfoRepository.GetAll().Select(info => info.ToBllUniversityInfo());
         }
 
-        public void CreateSpeciality(SpecialityEntity speciality)
+        public void CreateUniversityInfo(UniversityInfoEntity universityInfo)
         {
-            specialityRepository.Create(speciality.ToDalSpeciality());
+            universityInfoRepository.Create(universityInfo.ToDalUniversityInfo());
             uow.Commit();
         }
 

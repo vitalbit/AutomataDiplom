@@ -162,6 +162,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\StructureOrganizeController.cs" />
@@ -209,6 +210,7 @@
     <Content Include="Scripts\common\diagramWidget.js" />
     <Content Include="Scripts\common\HtmlLoader.js" />
     <Content Include="Scripts\common\spinnerWidget.js" />
+    <Content Include="Scripts\developScripts\DevelopAutomata.js" />
     <Content Include="Scripts\homeScripts\MaterialPage\addMaterialSection.js" />
     <Content Include="Scripts\homeScripts\addTestSection.js" />
     <Content Include="Scripts\homeScripts\MaterialPage\AddMaterialDisplay.html" />
@@ -231,7 +233,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\loginScripts\buttonsAction.js" />
+    <Content Include="Scripts\loginScripts\LoginAction.js" />
+    <Content Include="Scripts\loginScripts\CheckEmailPage.html" />
+    <Content Include="Scripts\loginScripts\SignUpPage.html" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -259,9 +263,11 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\StartTest.cshtml" />
     <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\Developer\AutomataDevelop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Developing\" />
     <Folder Include="Material\" />
     <Folder Include="ProjectsExpressions\" />
     <Folder Include="Scripts\TestsFolder\" />
@@ -286,6 +292,10 @@
     <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
       <Project>{0dc446fd-b223-4ad9-a88c-59f965e968e7}</Project>
       <Name>DependencyResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeveloperCompiler\DeveloperCompiler.csproj">
+      <Project>{19133b2f-6c26-44e6-a939-4dd961987b4c}</Project>
+      <Name>DeveloperCompiler</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestEndpoints\TestEndpoints.csproj">
       <Project>{87f501fa-2fb7-4d86-8916-81f3b10e8573}</Project>

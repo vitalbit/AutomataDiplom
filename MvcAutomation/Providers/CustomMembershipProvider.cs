@@ -53,32 +53,16 @@ namespace MvcAutomation.Providers
             throw new NotImplementedException();
         }
 
-        public MembershipUser CreateUser(string email, string password, int? roleId)
+        public MembershipUser CreateUser(string firstname, string lastname, string password, string email, int? universityInfoId, int? roleId)
         {
-            UserEntity user = userService.GetUserByEmail(email);
-
-            if (user != null)
-            {
-                user.RoleId = userService.GetAllRoleEntities().First(ent => ent.Name == "Student").Id;
-                user.Password = Crypto.HashPassword(password);
-                userService.UpdateUser(user);
-                MembershipUser memberUser = GetUser(email, false);
-                FormsAuthentication.SetAuthCookie(email, true);
-                return memberUser;
-            }
-            return null;
-        }
-
-        public MembershipUser CreateUser(string firstname, string lastname, string password, string email, int? courseId, int? groupId, int? specialityId, int? facultyId, int? roleId)
-        {
-            UserEntity user = new UserEntity() { FirstName = firstname, LastName = lastname, Email = email, CourseId = courseId, GroupId = groupId, SpecialityId = specialityId, FacultyId = facultyId };
+            UserEntity user = new UserEntity() { FirstName = firstname, LastName = lastname, Email = email, UniversityInfoId = universityInfoId };
             MembershipUser memberUser = GetUser(email, false);
 
             if (memberUser == null)
             {
                 user.Password = Crypto.HashPassword(password);
                 user.RoleId = roleId;
-                userService.UpdateUser(user);
+                userService.CreateUser(user);
                 memberUser = GetUser(email, false);
                 return memberUser;
             }
@@ -201,13 +185,10 @@ namespace MvcAutomation.Providers
             throw new NotImplementedException();
         }
 
-        public void UpdateUser(string email, int? facultyId, int? specialityId, int? courseId, int? groupId)
+        public void UpdateUser(string email, int? universityInfoId)
         {
             UserEntity user = userService.GetAllUserEntities().FirstOrDefault(ent => ent.Email == email);
-            user.FacultyId = facultyId;
-            user.SpecialityId = specialityId;
-            user.CourseId = courseId;
-            user.GroupId = groupId;
+            user.UniversityInfoId = universityInfoId;
             userService.UpdateUser(user);
         }
 

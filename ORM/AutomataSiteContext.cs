@@ -14,10 +14,7 @@ namespace ORM
             Database.SetInitializer(new CreateDatabaseIfNotExists<AutomataSiteContext>());
         }
 
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Faculty> Faculties { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<UniversityInfo> UniversityInfos { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<TestType> TestTyps { get; set; }

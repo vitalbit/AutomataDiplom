@@ -14,11 +14,8 @@ namespace DAL.Concrete
     {
         private readonly DbContext context;
         private GenericRepository<DalAnswer, Answer> answerRepository;
-        private GenericRepository<DalCourse, Course> courseRepository;
-        private GenericRepository<DalFaculty, Faculty> facultyRepository;
-        private GenericRepository<DalGroup, Group> groupRepository;
         private GenericRepository<DalRole, Role> roleRepository;
-        private GenericRepository<DalSpeciality, Speciality> specialityRepository;
+        private GenericRepository<DalUniversityInfo, UniversityInfo> universityInfoRepository;
         private GenericRepository<DalTest, Test> testRepository;
         private GenericRepository<DalTestFile, TestFile> testFileRepository;
         private GenericRepository<DalTestType, TestType> testTypeRepository;
@@ -51,36 +48,6 @@ namespace DAL.Concrete
             }
         }
 
-        public GenericRepository<DalCourse, Course> CourseRepository
-        {
-            get
-            {
-                if (this.courseRepository == null)
-                    this.courseRepository = new GenericRepository<DalCourse, Course>(context);
-                return courseRepository;
-            }
-        }
-
-        public GenericRepository<DalFaculty, Faculty> FacultyRepository
-        {
-            get
-            {
-                if (this.facultyRepository == null)
-                    this.facultyRepository = new GenericRepository<DalFaculty, Faculty>(context);
-                return facultyRepository;
-            }
-        }
-
-        public GenericRepository<DalGroup, Group> GroupRepository
-        {
-            get
-            {
-                if (this.groupRepository == null)
-                    this.groupRepository = new GenericRepository<DalGroup, Group>(context);
-                return groupRepository;
-            }
-        }
-
         public GenericRepository<DalRole, Role> RoleRepository
         {
             get
@@ -88,16 +55,6 @@ namespace DAL.Concrete
                 if (this.roleRepository == null)
                     this.roleRepository = new GenericRepository<DalRole, Role>(context);
                 return roleRepository;
-            }
-        }
-
-        public GenericRepository<DalSpeciality, Speciality> SpecialityRepository
-        {
-            get
-            {
-                if (this.specialityRepository == null)
-                    this.specialityRepository = new GenericRepository<DalSpeciality, Speciality>(context);
-                return specialityRepository;
             }
         }
 
@@ -151,6 +108,16 @@ namespace DAL.Concrete
             }
         }
 
+        public GenericRepository<DalUniversityInfo, UniversityInfo> UniversityInfoRepository
+        {
+            get
+            {
+                if (this.universityInfoRepository == null)
+                    this.universityInfoRepository = new GenericRepository<DalUniversityInfo, UniversityInfo>(context);
+                return universityInfoRepository;
+            }
+        }
+
         public void Dispose()
         {
             Dispose(true);
@@ -172,29 +139,9 @@ namespace DAL.Concrete
             get { return AnswerRepository; }
         }
 
-        IRepository<DalCourse> IUnitOfWork.CourseRepository
-        {
-            get { return CourseRepository; }
-        }
-
-        IRepository<DalFaculty> IUnitOfWork.FacultyRepository
-        {
-            get { return FacultyRepository; }
-        }
-
-        IRepository<DalGroup> IUnitOfWork.GroupRepository
-        {
-            get { return GroupRepository; }
-        }
-
         IRepository<DalRole> IUnitOfWork.RoleRepository
         {
             get { return RoleRepository; }
-        }
-
-        IRepository<DalSpeciality> IUnitOfWork.SpecialityRepository
-        {
-            get { return SpecialityRepository; }
         }
 
         IRepository<DalTest> IUnitOfWork.TestRepository
@@ -220,6 +167,11 @@ namespace DAL.Concrete
         IRepository<DalMaterial> IUnitOfWork.MaterialRepository
         {
             get { return MaterialRepository; }
+        }
+
+        IRepository<DalUniversityInfo> IUnitOfWork.UniversityInfoRepository
+        {
+            get { return UniversityInfoRepository; }
         }
     }
 }

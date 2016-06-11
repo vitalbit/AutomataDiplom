@@ -5,6 +5,7 @@ using MvcAutomation.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -35,13 +36,11 @@ namespace MvcAutomation.Controllers
         public ActionResult CheckEmail(string email)
         {
             UserEntity user = userService.GetUserByEmail(email);
-            
-            if (user != null && !String.IsNullOrEmpty(user.Password))
-                return Json(new { isRegistered = "true", isInDb = "true" });
-            else if (user != null && String.IsNullOrEmpty(user.Password))
-                return Json(new { isRegistered = "false", isInDb = "true" });
+
+            if (user != null)
+                return Json(new { isInDb = "true" });
             else
-                return Json(new { isRegistered = "false", isInDb = "false" });
+                return Json(new { isInDb = "false" });
         }
 
         [HttpPost]
@@ -72,22 +71,33 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult SignUp(LoginModel loginModel)
+        public ActionResult SignUp(string email, string firstName, string lastName, int? universityInfo)
         {
-            if (loginModel.Password == loginModel.RepeatPassword && ModelState.IsValid)
+            int? roleId = userService.GetRoleByName("Student").Id;
+            string password = Membership.GeneratePassword(7, 2);
+            try
             {
-                MembershipUser memberUser = ((CustomMembershipProvider)Membership.Provider).CreateUser(loginModel.Email, loginModel.Password, userService.GetAllRoleEntities().FirstOrDefault(ent => ent.Name == "Student").Id);
-                if (memberUser != null)
-                {
-                    FormsAuthentication.SetAuthCookie(memberUser.Email, true);
-                    return View("HomePage");
-                }
-                else
-                    ModelState.AddModelError("", "Ошибка при создании пользователя!");
+                MailAddress from = new MailAddress("bitvitalby@gmail.com");
+                MailAddress to = new MailAddress(email);
+                MailMessage m = new MailMessage(from, to);
+                m.Subject = "БГУ теория автоматов и формальных языков -- пароль";
+                m.Body = "Добро пожаловать на наш сайт!\n" +
+                    "Ваш пароль для входа: " + password;
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.Credentials = new System.Net.NetworkCredential("bitvitalby@gmail.com", "ne-znay.");
+                smtp.Send(m);
             }
-            else
-                ModelState.AddModelError("", "Пароли не совпадают!");
-            return View("Index");
+            catch(Exception ex)
+            {
+                return Json(new { message = "Неверно указан почтовый адрес" });
+            }
+            MembershipUser memberUser = ((CustomMembershipProvider)Membership.Provider).CreateUser(firstName, lastName, password, email, universityInfo, roleId);
+            if (memberUser != null)
+            {
+                return Json(new { message = "Пароль от аккаунта отправлен на указанную почту" });
+            }
+            return Json(new { message = "Ошибка при регистрации" });
         }
 
         [HttpGet]
@@ -106,7 +116,7 @@ namespace MvcAutomation.Controllers
             return View();
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult HomePageAdmin()
         {
@@ -160,19 +170,19 @@ namespace MvcAutomation.Controllers
             IEnumerable<UserEntity> users = userService.GetAllUserEntities();
             List<RoleEntity> roles = userService.GetAllRoleEntities().ToList();
             List<UserRole> userRole = new List<UserRole>();
-            foreach(UserEntity user in users)
+            foreach (UserEntity user in users)
             {
                 if (user.Role != null)
                 {
                     userRole.Add(new UserRole()
                     {
                         Email = user.Email,
-                        Course = user.Course != null ? user.Course.Name : null,
+                        Course = user.UniversityInfo != null ? user.UniversityInfo.Course : null,
                         FirstName = user.FirstName,
-                        Group = user.Group != null ? user.Group.Name : null,
+                        Group = user.UniversityInfo != null ? user.UniversityInfo.Group : null,
                         LastName = user.LastName,
                         Role = user.Role.Name,
-                        Speciaity = user.Speciality != null ? user.Speciality.Name : null
+                        Speciaity = user.UniversityInfo != null ? user.UniversityInfo.Speciality : null
                     });
                 }
             }
@@ -180,7 +190,7 @@ namespace MvcAutomation.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult ChangeRole(string email, string newRole)
         {
             UserEntity user = userService.GetUserByEmail(email);
@@ -191,7 +201,7 @@ namespace MvcAutomation.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult SearchUser(string search)
         {
             IEnumerable<UserEntity> users = userService.GetAllUserEntities(search);
@@ -204,12 +214,12 @@ namespace MvcAutomation.Controllers
                     userRole.Add(new UserRole()
                     {
                         Email = user.Email,
-                        Course = user.Course != null ? user.Course.Name : null,
+                        Course = user.UniversityInfo != null ? user.UniversityInfo.Course : null,
                         FirstName = user.FirstName,
-                        Group = user.Group != null ? user.Group.Name : null,
+                        Group = user.UniversityInfo != null ? user.UniversityInfo.Group : null,
                         LastName = user.LastName,
                         Role = user.Role.Name,
-                        Speciaity = user.Speciality != null ? user.Speciality.Name : null
+                        Speciaity = user.UniversityInfo != null ? user.UniversityInfo.Speciality : null
                     });
                 }
             }

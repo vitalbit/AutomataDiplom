@@ -16,16 +16,10 @@ namespace DAL.Mappers
         {
             if (entity is Answer)
                 return (entity as Answer).ToDalAnswer();
-            else if (entity is Course)
-                return (entity as Course).ToDalCourse();
-            else if (entity is Faculty)
-                return (entity as Faculty).ToDalFaculty();
-            else if (entity is Group)
-                return (entity as Group).ToDalGroup();
+            else if (entity is UniversityInfo)
+                return (entity as UniversityInfo).ToDalUniversityInfo();
             else if (entity is Role)
                 return (entity as Role).ToDalRole();
-            else if (entity is Speciality)
-                return (entity as Speciality).ToDalSpeciality();
             else if (entity is Test)
                 return (entity as Test).ToDalTest();
             else if (entity is TestFile)
@@ -44,16 +38,10 @@ namespace DAL.Mappers
         {
             if (entity is DalAnswer)
                 return (entity as DalAnswer).ToOrmAnswer();
-            else if (entity is DalCourse)
-                return (entity as DalCourse).ToOrmCourse();
-            else if (entity is DalFaculty)
-                return (entity as DalFaculty).ToOrmFaculty();
-            else if (entity is DalGroup)
-                return (entity as DalGroup).ToOrmGroup();
+            else if (entity is DalUniversityInfo)
+                return (entity as DalUniversityInfo).ToOrmUniversityInfo();
             else if (entity is DalRole)
                 return (entity as DalRole).ToOrmRole();
-            else if (entity is DalSpeciality)
-                return (entity as DalSpeciality).ToOrmSpeciality();
             else if (entity is DalTest)
                 return (entity as DalTest).ToOrmTest();
             else if (entity is DalTestFile)
@@ -77,16 +65,10 @@ namespace DAL.Mappers
                 LastName = user.LastName,
                 Password = user.Password,
                 Email = user.Email,
-                CourseId = user.CourseId,
-                GroupId = user.GroupId,
-                SpecialityId = user.SpecialityId,
-                FacultyId = user.FacultyId,
+                UniversityInfoId = user.UniversityInfoId,
                 RoleId = user.RoleId,
-                Course = (DalCourse)user.Course.ToDal(),
-                Faculty = (DalFaculty)user.Faculty.ToDal(),
-                Group = (DalGroup)user.Group.ToDal(),
-                Role = (DalRole)user.Role.ToDal(),
-                Speciality = (DalSpeciality)user.Speciality.ToDal()
+                UniversityInfo = (DalUniversityInfo)user.UniversityInfo.ToDal(),
+                Role = (DalRole)user.Role.ToDal()
             };
         }
 
@@ -99,10 +81,7 @@ namespace DAL.Mappers
                 LastName = user.LastName,
                 Password = user.Password,
                 Email = user.Email,
-                CourseId = user.CourseId,
-                GroupId = user.GroupId,
-                SpecialityId = user.SpecialityId,
-                FacultyId = user.FacultyId,
+                UniversityInfoId = user.UniversityInfoId,
                 RoleId = user.RoleId
             };
         }
@@ -133,60 +112,6 @@ namespace DAL.Mappers
             };
         }
 
-        public static DalCourse ToDalCourse(this Course course)
-        {
-            return new DalCourse()
-            {
-                Id = course.Id,
-                Name = course.Name
-            };
-        }
-
-        public static Course ToOrmCourse(this DalCourse course)
-        {
-            return new Course()
-            {
-                Id = course.Id,
-                Name = course.Name
-            };
-        }
-
-        public static DalFaculty ToDalFaculty(this Faculty faculty)
-        {
-            return new DalFaculty()
-            {
-                Id = faculty.Id,
-                Name = faculty.Name
-            };
-        }
-
-        public static Faculty ToOrmFaculty(this DalFaculty faculty)
-        {
-            return new Faculty()
-            {
-                Id = faculty.Id,
-                Name = faculty.Name
-            };
-        }
-
-        public static DalGroup ToDalGroup(this Group group)
-        {
-            return new DalGroup()
-            {
-                Id = group.Id,
-                Name = group.Name
-            };
-        }
-
-        public static Group ToOrmGroup(this DalGroup group)
-        {
-            return new Group()
-            {
-                Id = group.Id,
-                Name = group.Name
-            };
-        }
-
         public static DalRole ToDalRole(this Role role)
         {
             return new DalRole()
@@ -202,24 +127,6 @@ namespace DAL.Mappers
             {
                 Id = role.Id,
                 Name = role.Name
-            };
-        }
-
-        public static DalSpeciality ToDalSpeciality(this Speciality speciality)
-        {
-            return new DalSpeciality()
-            {
-                Id = speciality.Id,
-                Name = speciality.Name
-            };
-        }
-
-        public static Speciality ToOrmSpeciality(this DalSpeciality speciality)
-        {
-            return new Speciality()
-            {
-                Id = speciality.Id,
-                Name = speciality.Name
             };
         }
 
@@ -315,6 +222,33 @@ namespace DAL.Mappers
             };
         }
 
+        public static DalUniversityInfo ToDalUniversityInfo(this UniversityInfo universityInfo)
+        {
+            return new DalUniversityInfo()
+            {
+                AdditionalInfo = universityInfo.AdditionalInfo,
+                Course = universityInfo.Course,
+                Faculty = universityInfo.Faculty,
+                Group = universityInfo.Group,
+                Id = universityInfo.Id,
+                Speciality = universityInfo.Speciality,
+                University = universityInfo.University
+            };
+        }
+
+        public static UniversityInfo ToOrmUniversityInfo(this DalUniversityInfo universityInfo)
+        {
+            return new UniversityInfo()
+            {
+                AdditionalInfo = universityInfo.AdditionalInfo,
+                Course = universityInfo.Course,
+                Faculty = universityInfo.Faculty,
+                Group = universityInfo.Group,
+                Id = universityInfo.Id,
+                Speciality = universityInfo.Speciality,
+                University = universityInfo.University
+            };
+        }
         #endregion
         #region Copy
 
@@ -328,15 +262,12 @@ namespace DAL.Mappers
 
         public static void CopyToOrmUser(this DalUser dalUser, User ormUser, DbContext context)
         {
-            ormUser.CourseId = dalUser.CourseId;
             ormUser.Email = dalUser.Email;
-            ormUser.FacultyId = dalUser.FacultyId;
             ormUser.FirstName = dalUser.FirstName;
-            ormUser.GroupId = dalUser.GroupId;
             ormUser.LastName = dalUser.LastName;
             ormUser.Password = dalUser.Password;
             ormUser.RoleId = dalUser.RoleId;
-            ormUser.SpecialityId = dalUser.SpecialityId;
+            ormUser.UniversityInfoId = dalUser.UniversityInfoId;
         }
 
         //public static void CopyToOrmTest(this DalTest dalTest, Test ormTest, DbContext context)

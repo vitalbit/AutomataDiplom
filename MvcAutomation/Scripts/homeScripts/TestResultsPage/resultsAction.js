@@ -30,6 +30,7 @@
 
                 area.append(template);
             }
+            return msg.results.length;
         };
 
         var search = new SearchNavigation("#homePageMenu .displayArea", '/Test/GetUserAnswers', "/Test/SearchUserAnswer", updateResultsArea);

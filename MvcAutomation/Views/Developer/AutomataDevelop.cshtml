@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "AutomataDevelop";
+}
+
+<h2>AutomataDevelop</h2>
+<div>
+    <form method="post" id="dev-input">
+        <input type="file" class="dev-file" value="Upload" />
+    </form>
+    <form method="post" action="/Developer/AutomataDevelop">
+        <textarea id="dev-area" style="white-space: pre-wrap" cols="50" rows="20" name="file"></textarea>
+        <input type="submit" value="Generate" />
+    </form>
+</div>
+
+@Scripts.Render("~/bundles/developerScripts")

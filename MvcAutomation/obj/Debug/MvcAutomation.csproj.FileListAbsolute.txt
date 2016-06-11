@@ -69,3 +69,5 @@ D:\DIPLOM\AutomataDiplom\MvcAutomation\obj\Debug\MvcAutomation.dll
 D:\DIPLOM\AutomataDiplom\MvcAutomation\obj\Debug\MvcAutomation.pdb
 D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\TestEndpoints.dll
 D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\TestEndpoints.pdb
+D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\DeveloperCompiler.dll
+D:\DIPLOM\AutomataDiplom\MvcAutomation\bin\DeveloperCompiler.pdb

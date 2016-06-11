@@ -28,7 +28,7 @@ namespace MvcAutomation
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/loginScripts").Include(
-                "~/Scripts/loginScripts/buttonsAction.js"));
+                "~/Scripts/loginScripts/LoginAction.js"));
             bundles.Add(new ScriptBundle("~/bundles/TestEdit").Include(
                 "~/Scripts/homeScripts/TestsPage/TestEdit.js"));
             bundles.Add(new ScriptBundle("~/bundles/homeScripts").Include(
@@ -47,6 +47,8 @@ namespace MvcAutomation
                 "~/Scripts/common/searchWidget.js",
                 "~/Scripts/common/diagramWidget.js",
                 "~/Scripts/common/HtmlLoader.js"));
+            bundles.Add(new ScriptBundle("~/bundles/developerScripts").Include(
+                "~/Scripts/developScripts/DevelopAutomata.js"));
         }
     }
 }

@@ -77,7 +77,7 @@ angular.module('tableModule', [])
 			})
             .done(function (res) {
                 var msg = JSON.parse(res);
-                $('#targetArea').html('Your mark: ' + msg.Mark + '<br/><a href="/Home/HomePage">На главную</a>');
+                $('#targetArea').html('Your mark: ' + msg.Mark + '<br/><a href="/Home/HomePage">Back to home</a>');
             });
 			//console.log($scope.valObject);
 		}

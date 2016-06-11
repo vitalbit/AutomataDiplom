@@ -16,16 +16,10 @@ namespace BLL.Interface.Services
         IEnumerable<UserEntity> GetAllUserEntities(string search);
         void CreateUser(UserEntity user);
         void UpdateUser(UserEntity user);
-        IEnumerable<CourseEntity> GetAllCourseEntities();
-        void CreateCourse(CourseEntity course);
-        IEnumerable<FacultyEntity> GetAllFacultyEntities();
-        void CreateFaculty(FacultyEntity faculty);
-        IEnumerable<GroupEntity> GetAllGroupEntities();
-        void CreateGroup(GroupEntity group);
         IEnumerable<RoleEntity> GetAllRoleEntities();
         RoleEntity GetRoleByName(string role);
         void CreateRole(RoleEntity role);
-        IEnumerable<SpecialityEntity> GetAllSpecialityEntities();
-        void CreateSpeciality(SpecialityEntity speciality);
+        IEnumerable<UniversityInfoEntity> GetAllUniversityInfoEntities();
+        void CreateUniversityInfo(UniversityInfoEntity universityInfo);
     }
 }

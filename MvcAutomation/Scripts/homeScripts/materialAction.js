@@ -9,6 +9,7 @@
                 var item = msg.materials[i];
                 area.append('<a href="/Material/GetMaterial?materialId=' + item.Id + '">' + item.FileName + '</a><br/>');
             }
+            return msg.materials.length;
         };
         var search = new SearchNavigation("#homePageMenu .displayArea", '/Material/GetMaterials', "/Material/SearchMaterial", updateMaterialArea);
     });

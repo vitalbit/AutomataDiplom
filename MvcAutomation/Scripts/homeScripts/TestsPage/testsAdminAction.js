@@ -14,6 +14,7 @@
                 template.find('input[type="hidden"]').val(item.TestId);
                 area.append(template);
             }
+            return msg.tests.length;
         }
 
         var search = new SearchNavigation('#homePageMenu .displayArea', '/Test/GetTests', 'Test/SearchTests', updateTestArea);

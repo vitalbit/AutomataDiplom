@@ -40,15 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\AnswerEntity.cs" />
-    <Compile Include="Entities\CourseEntity.cs" />
-    <Compile Include="Entities\FacultyEntity.cs" />
-    <Compile Include="Entities\GroupEntity.cs" />
     <Compile Include="Entities\MaterialEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
-    <Compile Include="Entities\SpecialityEntity.cs" />
     <Compile Include="Entities\TestEntity.cs" />
     <Compile Include="Entities\TestFileEntity.cs" />
     <Compile Include="Entities\TestTypeEntity.cs" />
+    <Compile Include="Entities\UniversityInfoEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IMaterialService.cs" />
