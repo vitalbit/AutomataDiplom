@@ -18,5 +18,7 @@
         }
 
         var search = new SearchNavigation('#homePageMenu .displayArea', '/Test/GetTests', 'Test/SearchTests', updateTestArea);
+
+        $('#homePageMenu .displayArea').append('<form method="get" action="/Test/Edit"><input type="submit" value="Add" /></form>');
     });
 })();

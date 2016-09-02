@@ -33,7 +33,7 @@ namespace MvcAutomation
                 "~/Scripts/homeScripts/TestsPage/TestEdit.js"));
             bundles.Add(new ScriptBundle("~/bundles/homeScripts").Include(
                 "~/Scripts/homeScripts/roleAction.js",
-                "~/Scripts/homeScripts/studentAction.js",
+                //"~/Scripts/homeScripts/studentAction.js",
                 "~/Scripts/homeScripts/materialAction.js",
                 //"~/Scripts/homeScripts/addTestSection.js",
                 "~/Scripts/homeScripts/TestsPage/testAction.js",
@@ -41,7 +41,8 @@ namespace MvcAutomation
             bundles.Add(new ScriptBundle("~/bundles/homeAdminScripts").Include(
                 "~/Scripts/homeScripts/TestResultsPage/lastResultsSection.js",
                 "~/Scripts/homeScripts/TestsPage/testsAdminAction.js",
-                "~/Scripts/homeScripts/MaterialPage/addMaterialSection.js"));
+                "~/Scripts/homeScripts/MaterialPage/addMaterialSection.js",
+                "~/Scripts/homeScripts/StructureOrganizePage/StructureOrganizeAction.js"));
             bundles.Add(new ScriptBundle("~/bundles/commonScripts").Include(
                 "~/Scripts/common/spinnerWidget.js",
                 "~/Scripts/common/searchWidget.js",

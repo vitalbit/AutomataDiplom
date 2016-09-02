@@ -17,17 +17,11 @@ namespace MvcAutomation.Controllers
             this.userService = userService;
         }
 
-        //
-        // GET: /StructureOrganize/
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public class UniversityInfoString
         {
             public int Id { get; set; }
             public string Info { get; set; }
+            public string AdditionalInfo { get; set; }
         }
 
         [HttpGet]
@@ -37,93 +31,19 @@ namespace MvcAutomation.Controllers
                 Select(ent => new UniversityInfoString()
                 {
                     Id = ent.Id,
-                    Info = ent.ToString()
+                    Info = ent.ToString(),
+                    AdditionalInfo = ent.AdditionalInfo
                 });
             return Json(new { universityInfo = infos }, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpGet]
-        //[Authorize(Roles="Admin")]
-        //public ActionResult GetData()
-        //{
-        //    IEnumerable<FacultyEntity> faculties = userService.GetAllFacultyEntities();
-        //    IEnumerable<SpecialityEntity> specialities = userService.GetAllSpecialityEntities();
-        //    IEnumerable<CourseEntity> courses = userService.GetAllCourseEntities();
-        //    IEnumerable<GroupEntity> groups = userService.GetAllGroupEntities();
-        //    return Json(new { faculties = faculties, specialities = specialities, courses = courses, groups = groups }, JsonRequestBehavior.AllowGet);
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles="Admin")]
-        //public ActionResult AddFaculty(string faculty)
-        //{
-        //    FacultyEntity fac = new FacultyEntity() { Name = faculty };
-        //    userService.CreateFaculty(fac);
-        //    return Json(new { faculties = userService.GetAllFacultyEntities() });
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles="Admin")]
-        //public ActionResult AddSpeciality(string speciality)
-        //{
-        //    SpecialityEntity spec = new SpecialityEntity() { Name = speciality };
-        //    userService.CreateSpeciality(spec);
-        //    return Json(new { specialities = userService.GetAllSpecialityEntities() });
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles="Admin")]
-        //public ActionResult AddCourse(string course)
-        //{
-        //    CourseEntity courseEnt = new CourseEntity() { Name = course };
-        //    userService.CreateCourse(courseEnt);
-        //    return Json(new { courses = userService.GetAllCourseEntities() });
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles="Admin")]
-        //public ActionResult AddGroup(string group)
-        //{
-        //    GroupEntity groupEnt = new GroupEntity() { Name = group };
-        //    userService.CreateGroup(groupEnt);
-        //    return Json(new { groups = userService.GetAllGroupEntities() });
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles="Admin")]
-        //public ActionResult AddStudent(int? facultyId, int? specialityId, int? courseId, int? groupId, string email, string firstname, string lastname)
-        //{
-        //    string resultMessage = "Student has been added";
-        //    if (!facultyId.HasValue)
-        //        resultMessage = "Please select faculty";
-        //    else if (!specialityId.HasValue)
-        //        resultMessage = "Please select speciality";
-        //    else if (!courseId.HasValue)
-        //        resultMessage = "Please select course";
-        //    else if (!groupId.HasValue)
-        //        resultMessage = "Please select group";
-        //    else if (String.IsNullOrEmpty(email))
-        //        resultMessage = "Please enter email";
-        //    else if (String.IsNullOrEmpty(firstname))
-        //        resultMessage = "Please enter firstname";
-        //    else if (String.IsNullOrEmpty(lastname))
-        //        resultMessage = "Please enter lastname";
-        //    else
-        //    {
-        //        UserEntity user = new UserEntity()
-        //        {
-        //            CourseId = courseId.Value,
-        //            Email = email,
-        //            FacultyId = facultyId.Value,
-        //            FirstName = firstname,
-        //            GroupId = groupId.Value,
-        //            LastName = lastname,
-        //            SpecialityId = specialityId.Value
-        //        };
-        //        userService.CreateUser(user);
-        //    }
-        //    return Json(new { message = resultMessage });
-        //}
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        public ActionResult AddUniversityInfo(UniversityInfoEntity info)
+        {
+            userService.CreateUniversityInfo(info);
+            return Json(new { message = "done" });
+        }
 
         protected override void Dispose(bool disposing)
         {

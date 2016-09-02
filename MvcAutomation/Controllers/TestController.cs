@@ -294,7 +294,7 @@ namespace MvcAutomation.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(int testId)
+        public ActionResult Edit(int? testId)
         {
             return View();
         }

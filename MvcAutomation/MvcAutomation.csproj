@@ -214,12 +214,13 @@
     <Content Include="Scripts\homeScripts\MaterialPage\addMaterialSection.js" />
     <Content Include="Scripts\homeScripts\addTestSection.js" />
     <Content Include="Scripts\homeScripts\MaterialPage\AddMaterialDisplay.html" />
+    <Content Include="Scripts\homeScripts\StructureOrganizePage\StructureOrganizeAction.js" />
+    <Content Include="Scripts\homeScripts\StructureOrganizePage\StructureOrganizeTemplate.html" />
     <Content Include="Scripts\homeScripts\TestResultsPage\lastResultsSection.js" />
     <Content Include="Scripts\homeScripts\materialAction.js" />
     <Content Include="Scripts\homeScripts\TestResultsPage\resultsAction.js" />
     <Content Include="Scripts\homeScripts\roleAction.js" />
     <Content Include="Scripts\common\searchWidget.js" />
-    <Content Include="Scripts\homeScripts\studentAction.js" />
     <Content Include="Scripts\homeScripts\TestsPage\testAction.js" />
     <Content Include="Scripts\homeScripts\TestResultsPage\TestResultsDisplay.html" />
     <Content Include="Scripts\homeScripts\TestsPage\TestEdit.js" />
@@ -272,6 +273,7 @@
     <Folder Include="ProjectsExpressions\" />
     <Folder Include="Scripts\TestsFolder\" />
     <Folder Include="Temp\" />
+    <Folder Include="TestEndpoints\" />
     <Folder Include="Views\Material\" />
     <Folder Include="Views\StructureOrganize\" />
     <Folder Include="Views\TestPassing\" />
