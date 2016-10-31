@@ -22,8 +22,6 @@ namespace DAL.Mappers
                 return (entity as Role).ToDalRole();
             else if (entity is Test)
                 return (entity as Test).ToDalTest();
-            else if (entity is TestFile)
-                return (entity as TestFile).ToDalTestFile();
             else if (entity is TestType)
                 return (entity as TestType).ToDalTestType();
             else if (entity is User)
@@ -44,8 +42,6 @@ namespace DAL.Mappers
                 return (entity as DalRole).ToOrmRole();
             else if (entity is DalTest)
                 return (entity as DalTest).ToOrmTest();
-            else if (entity is DalTestFile)
-                return (entity as DalTestFile).ToOrmTestFile();
             else if (entity is DalTestType)
                 return (entity as DalTestType).ToOrmTestType();
             else if (entity is DalUser)
@@ -136,7 +132,6 @@ namespace DAL.Mappers
             {
                 Id = test.Id,
                 Name = test.Name,
-                TestFiles = test.TestFiles != null ? test.TestFiles.Select(ent => ent.ToDalTestFile()) : new List<DalTestFile>(),
                 TestTypeId = test.TestTypeId
             };
         }
@@ -147,30 +142,7 @@ namespace DAL.Mappers
             {
                 Id = test.Id,
                 Name = test.Name,
-                TestFiles = test.TestFiles != null ? test.TestFiles.Select(ent => ent.ToOrmTestFile()).ToList() : new List<TestFile>(),
                 TestTypeId = test.TestTypeId
-            };
-        }
-
-        public static DalTestFile ToDalTestFile(this TestFile testFile)
-        {
-            return new DalTestFile()
-            {
-                Id = testFile.Id,
-                Content = testFile.Content,
-                FileName = testFile.FileName,
-                Tests = testFile.Tests != null ? testFile.Tests.Select(ent => ent.ToDalTest()) : new List<DalTest>()
-            };
-        }
-
-        public static TestFile ToOrmTestFile(this DalTestFile testFile)
-        {
-            return new TestFile()
-            {
-                Id = testFile.Id,
-                Content = testFile.Content,
-                FileName = testFile.FileName,
-                Tests = testFile.Tests != null ? testFile.Tests.Select(ent => ent.ToOrmTest()).ToList() : new List<Test>()
             };
         }
 

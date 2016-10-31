@@ -28,6 +28,10 @@
             for (var i = 0; i != msg.testTypes.length; i++) {
                 typeSelect.append('<option value="' + msg.testTypes[i].Id + '">' + msg.testTypes[i].ModuleName + '</option>');
             }
+            if ($('#testIdForEdit').length != 0) {
+                var id = $('#testIdForEdit').val();
+                $('#type-select').val(id).change();
+            }
         });
     }
 
@@ -36,12 +40,13 @@
 
         $.ajax({
             method: "GET",
-            url: "/TestType/GetFiles"
+            url: "/TestType/GetFiles",
+            data: { testType: $("#testType").val() }
         })
         .done(function (msg) {
             fileSelect.html('');
             for (var i = 0; i != msg.testFiles.length; i++) {
-                fileSelect.append('<option value="' + msg.testFiles[i].Id + '">' + msg.testFiles[i].FileName + '</option>');
+                fileSelect.append('<option value="' + msg.testFiles[i] + '">' + msg.testFiles[i] + '</option>');
             }
         });
     }
@@ -91,7 +96,7 @@
     $("#json-input").submit(function (event) {
         event.preventDefault();
 
-        sendFile('json-file', '/TestType/AddFile', updateFileList);
+        sendFile('json-file', '/TestType/AddFiles?testType=' + $("#testType").val(), updateFileList);
     });
 
     $("#js-input .js-file").change(function () {
@@ -144,6 +149,7 @@
             $(".dll-filename").val(msg.testType.DllFileName);
             $(".dll-type-resolve").val(msg.testType.ResolveDllType);
             $("#testType").val(msg.testType.ModuleName);
+            updateFileList();
         });
     });
 
@@ -152,7 +158,7 @@
         $.ajax({
             method: "POST",
             url: "/Test/Create",
-            data: { typeId: $('#type-select').val(), fileId: $('#file-list').val(), testName: $('#test-name').val() }
+            data: { typeId: $('#type-select').val(), testName: $('#test-name').val() }
         })
         .done(function (msg) {
             alert(msg.message);
@@ -160,5 +166,4 @@
     })
 
     updateTestTypes();
-    updateFileList();
 })();

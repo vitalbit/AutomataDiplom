@@ -43,10 +43,15 @@ namespace MvcAutomation.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult GetFiles()
+        public ActionResult GetFiles(string testType)
         {
-            List<TestFileEntity> testFiles = testService.GetAllTestFiles().ToList();
-            return Json(new { testFiles = testFiles }, JsonRequestBehavior.AllowGet);
+            DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/Scripts/TestsFolder/" + testType + "/Input/"));
+            List<string> fileNames = new List<string>();
+            foreach (FileInfo fi in di.GetFiles())
+            {
+                fileNames.Add(fi.Name);
+            }
+            return Json(new { testFiles = fileNames }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -64,6 +69,7 @@ namespace MvcAutomation.Controllers
             cssfi.CopyTo(di.FullName + "\\" + cssFile, true);
             FileInfo dllfi = new FileInfo(tempPath + dllFile);
             dllfi.CopyTo(di.FullName + "\\" + dllFile, true);
+            di.CreateSubdirectory("Input");
 
             TestTypeEntity test = new TestTypeEntity()
             {
@@ -79,21 +85,17 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize(Roles="Admin")]
-        public ActionResult AddFile()
+        public ActionResult AddFiles(string testType)
         {
             if (Request.Files.Count > 0)
             {
-                HttpPostedFileBase file = Request.Files[0];
-                byte[] fileByte = new byte[file.ContentLength];
-                file.InputStream.Read(fileByte, 0, file.ContentLength);
-                TestFileEntity test = new TestFileEntity()
+                foreach (string fileName in Request.Files)
                 {
-                    Content = fileByte,
-                    FileName = Path.GetFileName(file.FileName)
-                };
-                testService.CreateTestFile(test);
+                    HttpPostedFileBase file = Request.Files[fileName];
+                    file.SaveAs(Server.MapPath("~/Scripts/TestsFolder/" + testType + "/Input/" + file.FileName));
+                }
             }
-            return Json(new { message = "Test file has been added" });
+            return Json(new { message = "Test files has been added" });
         }
 
         [HttpPost]

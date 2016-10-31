@@ -2,11 +2,12 @@
     var testId = $('#testArea > input[type="hidden"]')[0].value;
     var dllFilePath = $('#testArea > input[type="hidden"]')[1].value;
     var resolveDllType = $('#testArea > input[type="hidden"]')[2].value;
+    var fileNumber = $('#testArea > input[type="hidden"]')[3].value;
 
     $.ajax({
         method: "POST",
         url: "/TestPassing/CurrentFileWithoutTransform",
-        data: { testId: testId }
+        data: { testId: testId, testFileNumber: fileNumber }
     })
     .done(function (msg) {
         $('#targetArea').append('Regex: ' + msg.Description);

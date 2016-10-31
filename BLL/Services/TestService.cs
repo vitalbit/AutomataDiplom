@@ -5,6 +5,7 @@ using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork uow;
         private readonly IRepository<DalTest> testRepository;
-        private readonly IRepository<DalTestFile> testFileRepository;
         private readonly IRepository<DalTestType> testTypeRepository;
         private readonly IRepository<DalAnswer> answerRepository;
         private readonly IRepository<DalUser> userRepository;
@@ -24,7 +24,6 @@ namespace BLL.Services
         {
             this.uow = uow;
             this.testRepository = uow.TestRepository;
-            this.testFileRepository = uow.TestFileRepository;
             this.testTypeRepository = uow.TestTypeRepository;
             this.answerRepository = uow.AnswerRepository;
             this.userRepository = uow.UserRepository;
@@ -48,11 +47,6 @@ namespace BLL.Services
         public IEnumerable<TestEntity> GetAllTests(string search)
         {
             return testRepository.GetByPredicate(ent => ent.Name.ToLower().Contains(search.ToLower())).Select(ent => ent.ToBllTest());
-        }
-
-        public IEnumerable<TestFileEntity> GetAllTestFiles()
-        {
-            return testFileRepository.GetAll().Select(ent => ent.ToBllTestFile());
         }
 
         public IEnumerable<AnswerEntity> GetAllAnswers(int start)
@@ -91,11 +85,6 @@ namespace BLL.Services
             return testRepository.GetById(id).ToBllTest();
         }
 
-        public TestFileEntity GetFileById(int id)
-        {
-            return testFileRepository.GetById(id).ToBllTestFile();
-        }
-
         public TestTypeEntity GetTypeById(int id)
         {
             return testTypeRepository.GetById(id).ToBllTestType();
@@ -110,12 +99,6 @@ namespace BLL.Services
         public void CreateTest(TestEntity test)
         {
             testRepository.Create(test.ToDalTest());
-            uow.Commit();
-        }
-
-        public void CreateTestFile(TestFileEntity testFile)
-        {
-            testFileRepository.Create(testFile.ToDalTestFile());
             uow.Commit();
         }
 

@@ -1,7 +1,13 @@
-﻿@{
+﻿@model int?
+
+@{
     ViewBag.Title = "Edit";
 }
 
+@if (Model.HasValue)
+{
+    <input id="testIdForEdit" type="hidden" value="@Model.Value" />
+}
 <div class="edit-test-page" style="margin-top: 10px">
     <div style="width: 240px; float: left">
         <form method="post" id="js-input">
@@ -33,7 +39,7 @@
     <div style="float: left; width: 100px; margin: 0 10px 0 150px">
         <label>Список типов</label>
         <select id="type-select" size="20">
-            <option>Hello</option>
+            <option></option>
         </select>
     </div>
 </div>
@@ -47,11 +53,14 @@
             <center><a href="" class="add-json-file edit-icon" title="Добавить JS файл"></a></center>
         </form>
         <input type="text" name="jsFile" readonly />
+        <center>
+            <input type="submit" id="json-submit" value="Добавить файл" />
+        </center>
     </div>
     <div style="float:left; width:150px; margin: 0 0 0 50px">
         <label>Список файлов:</label>
         <select id="file-list" size="10">
-            <option>Файл1</option>
+            <option></option>
         </select>
     </div>
     <div style="float: left; width:100px; margin: 0 0 0 50px">

@@ -55,7 +55,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Test.cs" />
-    <Compile Include="TestFile.cs" />
     <Compile Include="TestType.cs" />
     <Compile Include="UniversityInfo.cs" />
     <Compile Include="User.cs" />

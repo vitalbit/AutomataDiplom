@@ -17,8 +17,7 @@ namespace ORM
         public DbSet<UniversityInfo> UniversityInfos { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<TestType> TestTyps { get; set; }
-        public DbSet<TestFile> TestFiles { get; set; }
+        public DbSet<TestType> TestTypes { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Material> Materials { get; set; }

@@ -43,7 +43,6 @@
     <Compile Include="Entities\MaterialEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
     <Compile Include="Entities\TestEntity.cs" />
-    <Compile Include="Entities\TestFileEntity.cs" />
     <Compile Include="Entities\TestTypeEntity.cs" />
     <Compile Include="Entities\UniversityInfoEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />

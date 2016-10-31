@@ -11,13 +11,11 @@ namespace ORM
         public int Id { get; set; }
         public string Name { get; set; }
         public int TestTypeId { get; set; }
-        public virtual ICollection<TestFile> TestFiles { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
         public virtual TestType TestType { get; set; }
 
         public Test()
         {
-            this.TestFiles = new HashSet<TestFile>();
             this.Answers = new HashSet<Answer>();
         }
     }

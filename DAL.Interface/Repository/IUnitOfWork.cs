@@ -13,7 +13,6 @@ namespace DAL.Interface.Repository
         IRepository<DalAnswer> AnswerRepository { get; }
         IRepository<DalRole> RoleRepository { get; }
         IRepository<DalTest> TestRepository { get; }
-        IRepository<DalTestFile> TestFileRepository { get; }
         IRepository<DalTestType> TestTypeRepository { get; }
         IRepository<DalUser> UserRepository { get; }
         IRepository<DalMaterial> MaterialRepository { get; }

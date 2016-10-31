@@ -38,27 +38,35 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CurrentFile(int testId, string dllFile, string resolveType)
+        public ActionResult CurrentFile(int testId, string dllFile, string resolveType, int testFileNumber)
         {
-            TestEntity test = testService.GetTestById(testId);
-            List<TestFileEntity> testFiles = new List<TestFileEntity>(test.TestFiles);
-            StreamReader sr = new StreamReader(new MemoryStream(testFiles[0].Content));
-
-            ITransform transform = ModuleResolver.GetTransformDll(Server.MapPath("~/Scripts/TestsFolder/" + dllFile), resolveType);
-            string description = transform.TransformFileToClient(sr.ReadToEnd());
-            sr.Close();
+            FileInfo[] files = this.GetTestFiles(testId);
+            string description = "";
+            using (FileStream fs = files[testFileNumber].OpenRead())
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    ITransform transform = ModuleResolver.GetTransformDll(Server.MapPath("~/Scripts/TestsFolder/" + dllFile), resolveType);
+                    description = transform.TransformFileToClient(sr.ReadToEnd());
+                }
+            }
             DescriptionReg descr = new DescriptionReg() { Description = description };
             return Json(descr);
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult CurrentFileWithoutTransform(int testId)
+        public ActionResult CurrentFileWithoutTransform(int testId, int testFileNumber)
         {
-            TestEntity test = testService.GetTestById(testId);
-            List<TestFileEntity> testFiles = new List<TestFileEntity>(test.TestFiles);
-            StreamReader sr = new StreamReader(new MemoryStream(testFiles[0].Content));
-            DescriptionReg descr = new JavaScriptSerializer().Deserialize<DescriptionReg>(sr.ReadToEnd());
+            DescriptionReg descr = null;
+            FileInfo[] files = this.GetTestFiles(testId);
+            using (FileStream fs = files[testFileNumber].OpenRead())
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    descr = new JavaScriptSerializer().Deserialize<DescriptionReg>(sr.ReadToEnd());
+                }
+            }
             return Json(descr);
         }
 
@@ -72,6 +80,14 @@ namespace MvcAutomation.Controllers
 
             Response.ContentType = "image/bmp";
             bitmap.Save(Response.OutputStream, ImageFormat.Bmp);
+        }
+
+        private FileInfo[] GetTestFiles(int testId)
+        {
+            TestEntity test = testService.GetTestById(testId);
+            TestTypeEntity testType = testService.GetTypeById(test.TestTypeId);
+            DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/Scripts/TestsFolder/" + testType.ModuleName + "/Input/"));
+            return di.GetFiles();
         }
 
         protected override void Dispose(bool disposing)

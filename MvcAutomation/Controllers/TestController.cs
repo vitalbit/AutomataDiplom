@@ -73,15 +73,11 @@ namespace MvcAutomation.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create(int typeId, int fileId, string testName)
+        public ActionResult Create(int typeId, string testName)
         {
-            TestFileEntity testFile = testService.GetFileById(fileId);
-            List<TestFileEntity> fileList = new List<TestFileEntity>();
-            fileList.Add(testFile);
             TestEntity test = new TestEntity()
             {
                 Name = testName,
-                TestFiles = fileList,
                 TestTypeId = typeId
             };
             testService.CreateTest(test);
@@ -102,7 +98,8 @@ namespace MvcAutomation.Controllers
                     CssFileName = testType.CssFileName,
                     TestName = test.Name,
                     DllFilePath = testType.ModuleName + '/' + testType.DllFileName,
-                    ResolveDllType = testType.ResolveDllType
+                    ResolveDllType = testType.ResolveDllType,
+                    TestFileNumber = this.GetRandomFileNumber(test.Id)
                 });
         }
 
@@ -112,6 +109,7 @@ namespace MvcAutomation.Controllers
             public string Description { get; set; }
             public string DllFilePath { get; set; }
             public string ResolveDllType { get; set; }
+            public int TestFileNumber { get; set; }
         }
 
         [HttpPost]
@@ -194,14 +192,21 @@ namespace MvcAutomation.Controllers
                     studentWriter.Write(automataFileSb.ToString());
                 }
 
-                List<TestFileEntity> files = test.TestFiles.ToList();
-                StreamReader sr = new StreamReader(new MemoryStream(files[0].Content));
                 FileInfo rightAnswer = new FileInfo(compareDir.FullName + "/answer_file.txt");
-                using (StreamWriter answerWriter = new StreamWriter(rightAnswer.Create()))
+                FileInfo[] files = this.GetTestFiles(inf.Id);
+                using (FileStream fs = files[inf.TestFileNumber].OpenRead())
                 {
-                    answerWriter.Write(sr.ReadToEnd());
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        using (FileStream rightAnswerFs = rightAnswer.Create())
+                        {
+                            using (StreamWriter answerWriter = new StreamWriter(rightAnswerFs))
+                            {
+                                answerWriter.Write(sr.ReadToEnd());
+                            }
+                        }
+                    }
                 }
-                sr.Close();
 
                 gradeResult = testModule.Grade(studentAnswer.FullName, rightAnswer.FullName);
                 if (gradeResult == "True")
@@ -296,7 +301,21 @@ namespace MvcAutomation.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? testId)
         {
-            return View();
+            return View(testId);
+        }
+
+        private int GetRandomFileNumber(int testId)
+        {
+            FileInfo[] files = this.GetTestFiles(testId);
+            return new Random().Next(files.Length);
+        }
+
+        private FileInfo[] GetTestFiles(int testId)
+        {
+            TestEntity test = testService.GetTestById(testId);
+            TestTypeEntity testType = testService.GetTypeById(test.TestTypeId);
+            DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/Scripts/TestsFolder/" + testType.ModuleName + "/Input/"));
+            return di.GetFiles();
         }
 
         protected override void Dispose(bool disposing)

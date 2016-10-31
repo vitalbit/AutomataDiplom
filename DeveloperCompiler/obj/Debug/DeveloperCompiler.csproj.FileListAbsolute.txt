@@ -1,5 +1,4 @@
 D:\DIPLOM\AutomataDiplom\DeveloperCompiler\bin\Debug\DeveloperCompiler.dll
 D:\DIPLOM\AutomataDiplom\DeveloperCompiler\bin\Debug\DeveloperCompiler.pdb
-D:\DIPLOM\AutomataDiplom\DeveloperCompiler\obj\Debug\DeveloperCompiler.csprojResolveAssemblyReference.cache
 D:\DIPLOM\AutomataDiplom\DeveloperCompiler\obj\Debug\DeveloperCompiler.dll
 D:\DIPLOM\AutomataDiplom\DeveloperCompiler\obj\Debug\DeveloperCompiler.pdb

@@ -11,6 +11,5 @@ namespace DAL.Interface.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public int TestTypeId { get; set; }
-        public IEnumerable<DalTestFile> TestFiles { get; set; }
     }
 }

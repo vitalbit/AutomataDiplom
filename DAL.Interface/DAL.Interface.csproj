@@ -56,7 +56,6 @@
     <Compile Include="DTO\DalUniversityInfo.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IDalEntity.cs" />
-    <Compile Include="DTO\DalTestFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />

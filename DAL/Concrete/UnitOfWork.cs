@@ -17,7 +17,6 @@ namespace DAL.Concrete
         private GenericRepository<DalRole, Role> roleRepository;
         private GenericRepository<DalUniversityInfo, UniversityInfo> universityInfoRepository;
         private GenericRepository<DalTest, Test> testRepository;
-        private GenericRepository<DalTestFile, TestFile> testFileRepository;
         private GenericRepository<DalTestType, TestType> testTypeRepository;
         private GenericRepository<DalUser, User> userRepository;
         private GenericRepository<DalMaterial, Material> materialRepository;
@@ -65,16 +64,6 @@ namespace DAL.Concrete
                 if (this.testRepository == null)
                     this.testRepository = new GenericRepository<DalTest, Test>(context);
                 return testRepository;
-            }
-        }
-
-        public GenericRepository<DalTestFile, TestFile> TestFileRepository
-        {
-            get
-            {
-                if (this.testFileRepository == null)
-                    this.testFileRepository = new GenericRepository<DalTestFile, TestFile>(context);
-                return testFileRepository;
             }
         }
 
@@ -147,11 +136,6 @@ namespace DAL.Concrete
         IRepository<DalTest> IUnitOfWork.TestRepository
         {
             get { return TestRepository; }
-        }
-
-        IRepository<DalTestFile> IUnitOfWork.TestFileRepository
-        {
-            get { return TestFileRepository; }
         }
 
         IRepository<DalTestType> IUnitOfWork.TestTypeRepository
