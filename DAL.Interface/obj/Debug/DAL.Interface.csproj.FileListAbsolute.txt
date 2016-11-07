@@ -1,4 +1,3 @@
-D:\DIPLOM\AutomataDiplom\DAL.Interface\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
 D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\DAL.Interface.dll.config
 D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\DAL.Interface.dll
 D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\DAL.Interface.pdb

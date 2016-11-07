@@ -6,7 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using System.Web;
+using System.Reflection;
+using System.Resources;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -77,15 +78,16 @@ namespace MvcAutomation.Controllers
             string password = Membership.GeneratePassword(7, 2);
             try
             {
-                MailAddress from = new MailAddress("bitvitalby@gmail.com");
+                MailAddress from = new MailAddress(System.Web.Configuration.WebConfigurationManager.AppSettings["SignupMailAddress"]);
                 MailAddress to = new MailAddress(email);
                 MailMessage m = new MailMessage(from, to);
-                m.Subject = "БГУ теория автоматов и формальных языков -- пароль";
-                m.Body = "Добро пожаловать на наш сайт!\n" +
-                    "Ваш пароль для входа: " + password;
+                m.Subject = Resources.AutomatonTextResources.MailSubject;
+                m.Body = String.Format(Resources.AutomatonTextResources.MailBody, password);
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential("bitvitalby@gmail.com", "ne-znay.");
+                smtp.Credentials = new System.Net.NetworkCredential(
+                    System.Web.Configuration.WebConfigurationManager.AppSettings["SignupMailAddress"],
+                    System.Web.Configuration.WebConfigurationManager.AppSettings["SignupMailAddressPassword"]);
                 smtp.Send(m);
             }
             catch(Exception ex)
