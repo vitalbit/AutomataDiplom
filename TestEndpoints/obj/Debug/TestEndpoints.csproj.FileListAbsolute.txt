@@ -2,3 +2,4 @@ D:\DIPLOM\AutomataDiplom\TestEndpoints\bin\Debug\TestEndpoints.dll
 D:\DIPLOM\AutomataDiplom\TestEndpoints\bin\Debug\TestEndpoints.pdb
 D:\DIPLOM\AutomataDiplom\TestEndpoints\obj\Debug\TestEndpoints.dll
 D:\DIPLOM\AutomataDiplom\TestEndpoints\obj\Debug\TestEndpoints.pdb
+D:\DIPLOM\AutomataDiplom\TestEndpoints\obj\Debug\TestEndpoints.csprojResolveAssemblyReference.cache

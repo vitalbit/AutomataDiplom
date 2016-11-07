@@ -7,3 +7,4 @@ D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\EntityFramework.xml
 D:\DIPLOM\AutomataDiplom\DAL.Interface\bin\Debug\EntityFramework.SqlServer.xml
 D:\DIPLOM\AutomataDiplom\DAL.Interface\obj\Debug\DAL.Interface.dll
 D:\DIPLOM\AutomataDiplom\DAL.Interface\obj\Debug\DAL.Interface.pdb
+D:\DIPLOM\AutomataDiplom\DAL.Interface\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
